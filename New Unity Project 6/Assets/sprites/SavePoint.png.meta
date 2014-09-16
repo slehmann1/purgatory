@@ -1,0 +1,476 @@
+fileFormatVersion: 2
+guid: 078dad93118b5d54cac33468319f6d97
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SavePoint
+    21300002: Flag_1
+    21300004: Flag_2
+    21300006: Flag_4
+    21300008: Flag_Center
+    21300010: Flag_-1
+    21300012: Flag_-2
+    21300014: Flag_-3
+    21300016: Flag_-4
+    21300018: Flag_Pole
+    21300020: SavePoint_Base_1
+    21300022: SavePoint_Base_7
+    21300024: SavePoint_Base_2
+    21300026: SavePoint_Base_8
+    21300028: SavePoint_Base_3
+    21300030: SavePoint_Base_9
+    21300032: SavePoint_Base_4
+    21300034: SavePoint_Base_10
+    21300036: SavePoint_Base_5
+    21300038: SavePoint_Base_11
+    21300040: SavePoint_Base_6
+    21300042: SavePoint_Base_12
+    21300044: Flag_3
+    21300046: SavePoint_Pole
+    21300048: SavePoint_Base_18
+    21300050: SavePoint_Base_19
+    21300052: SavePoint_Base_20
+    21300054: SavePoint_Base_21
+    21300056: SavePoint_Base_22
+    21300058: SavePoint_Base_23
+    21300060: SavePoint_Base_24
+    21300062: SavePoint_Base_25
+    21300064: SavePoint_Base_26
+    21300066: SavePoint_Base_27
+    21300068: SavePoint_Base_28
+    21300070: SavePoint_Base_29
+    21300072: SavePoint_Base_13
+    21300074: SavePoint_Base_30
+    21300076: SavePoint_Base_14
+    21300078: SavePoint_Base_31
+    21300080: SavePoint_Base_15
+    21300082: SavePoint_Base_32
+    21300084: SavePoint_Base_16
+    21300086: SavePoint_Base_33
+    21300088: SavePoint_Base_17
+    21300090: SavePoint_Base_34
+    21300092: SavePoint_Top
+    21300094: SavePoint_Bottom
+    21300096: SavePoint_Cannon
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SavePoint_Pole
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1268
+        width: 64
+        height: 866
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 2039
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_18
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 2039
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1912
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_19
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1912.40002
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_3
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1783
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_20
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1784
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_4
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1656
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_21
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1656
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_5
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1529
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_22
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1529
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_6
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1402
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_23
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1402
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_7
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1274
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_24
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1274
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_8
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1147
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_25
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1147
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_9
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1019.29999
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_26
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 1018
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_10
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 891.25
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_27
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 891
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_11
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 764
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_28
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 765
+        width: 826
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_12
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 637.400024
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_29
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 638
+        width: 827
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_13
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 510.399994
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_30
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 510
+        width: 827
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_14
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 382.399994
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_31
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 382
+        width: 827
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_15
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 254
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_32
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 255
+        width: 827
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_16
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 127
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_33
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 126
+        width: 827
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_17
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 0
+        width: 829
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Base_34
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 0
+        width: 827
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Top
+      rect:
+        serializedVersion: 2
+        x: 1923
+        y: 1658
+        width: 1447
+        height: 441
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Bottom
+      rect:
+        serializedVersion: 2
+        x: 2201
+        y: 1408
+        width: 875
+        height: 177
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SavePoint_Cannon
+      rect:
+        serializedVersion: 2
+        x: 3230
+        y: 1384
+        width: 164
+        height: 231
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

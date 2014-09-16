@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 099934dfd4cec0c41a3550a87544443f
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Flag
+    21300002: Flag_0
+    21300004: Flag_10
+    21300006: Flag_2
+    21300008: Flag_1
+    21300010: Flag_9
+    21300012: Flag_3
+    21300014: Flag_4
+    21300016: Flag_6
+    21300018: Flag_8
+    21300020: Flag_5
+    21300022: Flag_7
+    21300024: Flag_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Flag_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 639
+        width: 269
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_10
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 639
+        width: 271
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_2
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 639
+        width: 273
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 426
+        width: 271
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_11
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 426
+        width: 269
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_3
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 426
+        width: 275
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 213
+        width: 276
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_6
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 213
+        width: 278
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_8
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 213
+        width: 277
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_5
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 278
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_7
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 0
+        width: 278
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Flag_9
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 0
+        width: 274
+        height: 203
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

@@ -1,0 +1,346 @@
+fileFormatVersion: 2
+guid: d95da2ae949c5e54fb3c17759f0121cb
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Tower
+    21300002: Bank
+    21300004: BankRed
+    21300006: BankRedEntrance
+    21300008: BankRedSide
+    21300010: BankBlue
+    21300012: BankBlueEntrance
+    21300014: BankBlueSide
+    21300016: BankTeal
+    21300018: BankTealEntrance
+    21300020: BankTealSide
+    21300022: BankBurgundy
+    21300024: BankBurgundyEntrance
+    21300026: BankBurgundySide
+    21300028: BankPurple
+    21300030: BankPurpleEntrance
+    21300032: BankPurpleSide
+    21300034: BankGreen
+    21300036: BankGreenEntrance
+    21300038: BankGreenSide
+    21300040: BankYellow
+    21300042: BankYellowEntrance
+    21300044: BankYellowSide
+    21300046: BankLimeGreen
+    21300048: BankLimeGreenEntrance
+    21300050: BankLimeGreenSide
+    21300052: BankGrey
+    21300054: BankGreyEntrance
+    21300056: BankGreySide
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 2
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BankRed
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 7207
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankRedEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 7201.6001
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankRedSide
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 7076
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankBlue
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 6311
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankBlueEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 6309
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankBlueSide
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 6168
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankTeal
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 5428
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankTealEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 5428
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankTealSide
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 5355
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankBurgundy
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 4541
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankBurgundyEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 4541
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankBurgundySide
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 4447
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankPurple
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 3649
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankPurpleEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 3649
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankPurpleSide
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 3537
+        width: 74
+        height: 922
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankGreen
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2760
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankGreenEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 2760
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankGreenSide
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 2678
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankYellow
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1869
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankYellowEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1867
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankYellowSide
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 1768
+        width: 74
+        height: 921
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankLimeGreen
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 981
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankLimeGreenEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 981
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankLimeGreenSide
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 908
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankGrey
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 92
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankGreyEntrance
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 92
+        width: 900
+        height: 770
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BankGreySide
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 0
+        width: 74
+        height: 920
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

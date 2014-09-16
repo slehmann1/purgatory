@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2d5816b6954245547ba2842845a1e2a8
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - doubleJumpPref: {fileID: 100000, guid: 86fbec164654ebd4c96b493e36003241, type: 2}
+  - jumping: {instanceID: 0}
+  - normal: {instanceID: 0}
+  - stopping: {instanceID: 0}
+  - clingingJump: {instanceID: 0}
+  - anim: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

@@ -1,0 +1,334 @@
+fileFormatVersion: 2
+guid: 3aa8471b016cba74c9ddd6a6bf556f41
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: car 2
+    21300002: Car_Wheel_1
+    21300004: Car_Wheel_2
+    21300006: Car_Wheel_3
+    21300008: Car_Wheel_4
+    21300010: Antenna_Segment
+    21300012: Truck_Spoiler
+    21300014: Antenna_End
+    21300016: Truck_Pallet
+    21300018: Exhaust
+    21300020: Tall_Exhaust
+    21300022: Car_Blue
+    21300024: Car_Green
+    21300026: Car_White
+    21300028: Car_Grey
+    21300030: Truck_Green
+    21300032: Truck_Blue
+    21300034: Truck_White
+    21300036: Truck_Grey
+    21300038: Sports_Red
+    21300040: Sports_Green
+    21300042: Sports_White
+    21300044: Sports_Blue
+    21300046: Van_Green
+    21300048: Van_Blue
+    21300050: Van_White
+    21300052: Van_Grey
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Car_Wheel_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 2556
+        width: 206
+        height: 207
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_Wheel_2
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 2557
+        width: 201
+        height: 201
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_Wheel_3
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 2560
+        width: 209
+        height: 206
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_Wheel_4
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 2557
+        width: 209
+        height: 206
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Antenna_Segment
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 2568
+        width: 2
+        height: 166
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Truck_Spoiler
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 2595
+        width: 134
+        height: 86
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Antenna_End
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 2621
+        width: 69
+        height: 68
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Truck_Pallet
+      rect:
+        serializedVersion: 2
+        x: 1862
+        y: 2578
+        width: 683
+        height: 156
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Exhaust
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 2610
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tall_Exhaust
+      rect:
+        serializedVersion: 2
+        x: 2852
+        y: 2588
+        width: 60
+        height: 333
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_Blue
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1930
+        width: 1453
+        height: 580
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_Green
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 1929
+        width: 1452
+        height: 581
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_White
+      rect:
+        serializedVersion: 2
+        x: 3060
+        y: 1930
+        width: 1452
+        height: 580
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Car_Grey
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 1929
+        width: 1453
+        height: 581
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Truck_Green
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1277
+        width: 1453
+        height: 575
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Truck_Blue
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 1266
+        width: 1452
+        height: 577
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Truck_White
+      rect:
+        serializedVersion: 2
+        x: 3060
+        y: 1277
+        width: 1452
+        height: 575
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Truck_Grey
+      rect:
+        serializedVersion: 2
+        x: 4601
+        y: 1266
+        width: 1452
+        height: 577
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sports_Red
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 760
+        width: 1588
+        height: 428
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sports_Green
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 760
+        width: 1589
+        height: 428
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sports_White
+      rect:
+        serializedVersion: 2
+        x: 3283
+        y: 760
+        width: 1589
+        height: 428
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sports_Blue
+      rect:
+        serializedVersion: 2
+        x: 4932
+        y: 760
+        width: 1588
+        height: 428
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Van_Green
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 0
+        width: 1453
+        height: 575
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Van_Blue
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 0
+        width: 1454
+        height: 575
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Van_White
+      rect:
+        serializedVersion: 2
+        x: 3129
+        y: 0
+        width: 1453
+        height: 575
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Van_Grey
+      rect:
+        serializedVersion: 2
+        x: 4652
+        y: 0
+        width: 1452
+        height: 575
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
