@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class Camera_Tracker : MonoBehaviour
 {
 		public GameObject g ;
-		private Transform target;
+		public Transform target;
 		public float xthreshold, ythreshold, xtrackSpeed, ytrackSpeed;
 		private List <HillSpawner> hillMovement;
 		//private GameObject o;
@@ -15,7 +15,19 @@ public class Camera_Tracker : MonoBehaviour
 		// Set target
 		public void Start ()
 		{
+            GameObject[]players=GameObject.FindGameObjectsWithTag("Player");
+            if(players.Length>1){
+                string s="There is more than one player, there are the following: \n";
+                for (int i=0; i<players.Length; i++) {
+                    Debug.Log(i);
+                    s+=players [i].name+" at position "+players[i].transform.position+"\n";
+                }
+                Debug.Log(s);
+            }
 				target = GameObject.FindGameObjectWithTag ("Player").transform;
+                if (!target) {
+                    Debug.LogError("Camera is unable to find player!!!!!!");
+                }
 				hillMovement = new List<HillSpawner> ();
 				//	hillMovement=GameObject.FindGameObjectWithTag("HillSpawners").GetComponent<HillSpawner>();
 				GameObject[] hills = GameObject.FindGameObjectsWithTag ("HillSpawners");

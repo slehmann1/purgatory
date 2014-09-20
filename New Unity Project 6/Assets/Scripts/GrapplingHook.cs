@@ -20,6 +20,7 @@ public class GrapplingHook : MonoBehaviour {
     public float minimumDistance;
     public bool invertedScroll;
     void Start() {
+        
         obj=(GameObject)GameObject.Instantiate(obj);
         player=transform.parent.transform.parent.gameObject;
         pMov=player.GetComponent<Player_Movement>();
@@ -100,10 +101,11 @@ public class GrapplingHook : MonoBehaviour {
         //this is where the math starts
         //setting the position to halfway between the beginning and the end
         obj.position=Vector3.Lerp(start, end, 0.5f);
+        Debug.DrawLine(start, obj.position, Color.red, 2f, false);
         //getting the scale
         float scale=Vector3.Distance(start, end);
-        scale*=2f;
-        obj.transform.localScale=new Vector3(scale, obj.transform.localScale.y);
+       // scale*=2f;
+        obj.transform.localScale=new Vector3(scale/player.transform.lossyScale.x, obj.transform.localScale.y);
         if (scale<0) {
             Debug.LogWarning("The spacing is too high!");
         }
