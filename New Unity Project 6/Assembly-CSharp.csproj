@@ -65,14 +65,12 @@
      <Compile Include="Assets\Scripts\Game_Manager.cs" />
      <Compile Include="Assets\Scripts\GrapplingEnd.cs" />
      <Compile Include="Assets\Scripts\GrapplingHook.cs" />
-     <Compile Include="Assets\Scripts\GrapplingHookEnd.cs" />
      <Compile Include="Assets\Scripts\GrapplingStalk.cs" />
      <Compile Include="Assets\Scripts\HillSpawner.cs" />
      <Compile Include="Assets\Scripts\HingeSetup.cs" />
      <Compile Include="Assets\Scripts\Kill.cs" />
      <Compile Include="Assets\Scripts\LifeBehaviour.cs" />
      <Compile Include="Assets\Scripts\Lives.cs" />
-     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\NonLoopingScrollScript.cs" />
      <Compile Include="Assets\Scripts\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\Player_Movement.cs" />
@@ -84,7 +82,6 @@
      <Compile Include="Assets\Scripts\TiltVelocityLimiter.cs" />
      <Compile Include="Assets\Scripts\Update.cs" />
      <Compile Include="Assets\Scripts\VanText.cs" />
-     <Compile Include="Assets\Scripts\WaypointScript.cs" />
      <Compile Include="Assets\Scripts\WaypointedPath.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
   </ItemGroup>
