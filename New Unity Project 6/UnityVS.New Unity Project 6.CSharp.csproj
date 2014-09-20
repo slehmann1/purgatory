@@ -88,7 +88,6 @@
     <Compile Include="Assets\Scripts\Update.cs" />
     <Compile Include="Assets\Scripts\VanText.cs" />
     <Compile Include="Assets\Scripts\WaypointedPath.cs" />
-    <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

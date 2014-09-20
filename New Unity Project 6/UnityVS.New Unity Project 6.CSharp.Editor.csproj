@@ -69,10 +69,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\CleanUpWindow.cs" />
     <Compile Include="Assets\Editor\ConnectObjectsEditor.cs" />
     <Compile Include="Assets\Editor\ConnectViaDuplicationEditor.cs" />
     <Compile Include="Assets\Editor\GrapplingHookEditor.cs" />
-    <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+    <Compile Include="Assets\Editor\UsedAssets.cs" />
     <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll" />
     <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll" />
     <None Include="Assets\UnityVS\Editor\UnityVS.VersionSpecific.dll" />
