@@ -6,7 +6,7 @@ using System.Collections;
 public class GrapplingHook : MonoBehaviour {
     public float range;
     private float angle, gap;
-    public float  changeSpeed;
+    public float changeSpeed;
     Vector2 target, oldTarget;
     public GameObject obj;
     private GameObject player;
@@ -25,13 +25,9 @@ public class GrapplingHook : MonoBehaviour {
         pMov=player.GetComponent<Player_Movement>();
         obj.collider2D.enabled=false;
         obj.transform.parent=transform;
-        //	obj.GetComponent<HingeSetup> ().setConnected (player);
-        //	obj.GetComponent<HingeJoint2D> ().anchor = new Vector2 (-0.5f, 0);
         obj.GetComponent<HingeJoint2D>().anchor=new Vector2(-0.5f, 0);
         obj.GetComponent<HingeJoint2D>().connectedBody=player.rigidbody2D;
         obj.collider2D.enabled=true;
-        //objEnd = transform.parent.GetComponentInChildren<GrapplingHookEnd> ();
-        //	objEnd.Init (player);
         objMid=obj.GetComponentInChildren<GrapplingStalk>();
         obj.SetActive(false);
         end=(GameObject)GameObject.Instantiate(end);
@@ -40,18 +36,7 @@ public class GrapplingHook : MonoBehaviour {
         endScript.Setup(obj);
         HingeJoint2D dj=obj.AddComponent<HingeJoint2D>();
         dj.anchor=new Vector2(0.5f, 0);
-        //dj.distance=0.00005f;
         dj.connectedBody=end.rigidbody2D;
-        //	dj.maxDistanceOnly=true;
-        //dist=GetComponent<DistanceJoint2D>();
-        //	System.Diagnostics.Stopwatch sw=new System.Diagnostics.Stopwatch();
-        //	sw.Start();
-        //	for(int i=0; i<100; i++){
-        //		sections[i]=(GameObject)GameObject.Instantiate(pref);
-        //	}
-        //	sw.Stop();
-        //	Debug.Log("Time: "+sw.ElapsedMilliseconds+" ms");
-        //			Debug.Log (LayerMask.NameToLayer ("level"));
     }
     /// <summary>
     /// removes a grappling hook
@@ -90,7 +75,6 @@ public class GrapplingHook : MonoBehaviour {
             }
         }
         connect(obj.transform, transform.position, target);
-        //		objEnd.Setup (angle);
         obj.SetActive(true);
         endScript.Spawn();
         endScript.setRange(Vector3.Distance(target, transform.position));
@@ -119,13 +103,10 @@ public class GrapplingHook : MonoBehaviour {
         //getting the scale
         float scale=Vector3.Distance(start, end);
         scale*=2f;
-        //	scale/=transform.localScale.x;
-        //Debug.Log(obj.lossyScale.x);
         obj.transform.localScale=new Vector3(scale, obj.transform.localScale.y);
         if (scale<0) {
             Debug.LogWarning("The spacing is too high!");
         }
-        //Debug.Log(transform.localScale.x);
         //trig
         float degrees=Mathf.Atan((end.y-start.y)/(end.x-start.x));
         obj.localRotation=Quaternion.Euler(0, 0, angle*180/Mathf.PI);
@@ -147,23 +128,9 @@ public class GrapplingHook : MonoBehaviour {
                     hasHitObj=false;
                     oldTarget=transform.position+(newVec*range);
                 }
-                //end.rigidbody2D.velocity = Vector2.zero;
-                /*if (Physics2D.Linecast (transform.position, Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y,10f)), 1 << 8)) {
-                targetCast = Physics2D.Linecast (transform.position, Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, Input.mousePosition.y)), 1 << 8);
-                oldTarget = targetCast.point;
-                hasHitObj = true;
-        } else {
-                hasHitObj = false;
-                oldTarget = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, Input.mousePosition.y));
-        }*/
-                //	Debug.Log (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,10f)));
                 target=oldTarget;
                 Debug.DrawLine(transform.position, (target), Color.green, 1.0f, true);
                 grapple();
-                //Debug.Log (gap);
-                //		GameObject.Instantiate(end,Camera.main.ScreenToWorldPoint (new Vector2(Input.mousePosition.x,Input.mousePosition.y)),Quaternion.identity);
-                //	Debug.DrawLine (transform.position, target, Color.blue, 1.0f, true);
-                //	}
             }
         }
         if (Input.GetButtonDown("Release_Grappling_Hook")) {
@@ -197,11 +164,6 @@ public class GrapplingHook : MonoBehaviour {
                     changeLength(false);
                 }
             }
-            //	joint.distance -= (Input.GetAxis ("Change_Grappling_Hook_Length") * Time.deltaTime * changeSpeed);
-            ////Debug.Log (joint.distance);
-            //	//if (joint.distance > range) {
-            //			joint.distance = range;
-            //	}
         }
     }
     /// <summary>
@@ -231,7 +193,34 @@ public class GrapplingHook : MonoBehaviour {
             }
             removeLine();
             try {
-                grapple();
+                angle=Mathf.Atan(Mathf.Abs((target.y-transform.position.y)/(target.x-transform.position.x)));
+                if (float.IsNaN(angle)) {
+                    throw new Exception("The difference between the points to connect is too low. (floating point precision issue)");
+                }
+                if (target.x>transform.position.x) {
+                    if (target.y>transform.position.y) {
+                        //quad 1
+                    }
+                    else {
+                        //quad 4
+                        angle=(Mathf.PI)-angle+(Mathf.PI);
+                    }
+                }
+                else {
+                    if (target.y>transform.position.y) {
+                        //quad 2
+                        angle=(Mathf.PI/2)-angle+(Mathf.PI/2);
+                    }
+                    else {
+                        //quad 3
+                        angle=Mathf.PI+angle;
+                    }
+                }
+                connect(obj.transform, transform.position, target);
+                obj.SetActive(true);
+                endScript.updateLength();
+                endScript.setRange(Vector3.Distance(target, transform.position));
+                end.transform.position=target;
             }
             catch {
             }
