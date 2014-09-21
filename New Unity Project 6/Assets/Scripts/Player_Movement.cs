@@ -149,7 +149,7 @@ public class Player_Movement : MonoBehaviour
 		void movement ()
 		{
 				text += rigidbody2D.velocity.x;
-				animator.SetFloat ("walkingSpeed", 0.0f);
+				animator.SetFloat ("Speed", 0.0f);
 				float h = Input.GetAxis ("Horizontal");
 				coll.enabled = false;//there is a bug in unity that requires collider to be disabled and then enabled
 				//when changing 2d physics materials, check if still there every time unity updates
@@ -170,11 +170,13 @@ public class Player_Movement : MonoBehaviour
 						// ... add a force to the player.
                     if (grounded) {
                         rigidbody2D.AddForce(Vector2.right*h*moveForce);
+                        animator.SetBool("Jump", false);
                     }
-                    else if(!grappling){
+                    else if(!grappling){//jumping
+                        animator.SetBool("Jump", true);
 						rigidbody2D.AddForce (Vector2.right * h * airMovement);
                     }
-                    else {
+                    else {//grappling
                         rigidbody2D.AddForce(Vector2.right*h*grapplingMovement);
                     }
 				}
@@ -184,10 +186,7 @@ public class Player_Movement : MonoBehaviour
 						rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 						//			backgroundUpdate.run(1.0f);
 				}
-				if (coll.collider2D.sharedMaterial == normal) {
-						animator.SetFloat ("walkingSpeed", Mathf.Abs (h));
-						animator.SetBool ("Jump", true);
-				}
+						animator.SetFloat ("Speed", Mathf.Abs (h));
 				// If the input is moving the player right and the player is facing left...
 				if (h > 0 && !facingRight) {
 						// ... flip the player.
@@ -223,21 +222,28 @@ public class Player_Movement : MonoBehaviour
 	public void setGrappling(bool grapple){
 		if(grapple){
 			dubjump=false;
-		}
+            animator.SetBool("Grappling", true);
+        }
+        else {
+            animator.SetBool("Grappling", false);
+        }
 		grappling=grapple;
 	}
 		private void jumpUp (float i)
 		{
+            animator.SetBool("Jump", true);
 				rigidbody2D.velocity = new Vector2 (rigidbody2D.velocity.x, 0f);//this sets y velocity to zero, should this be done
 				rigidbody2D.AddForce (new Vector2 (0f, i));
 		}
 		private void doubleJump ()
 		{
+            animator.SetBool("Jump", true);
 				//doubleJumpParticle.Run ();
 				Instantiate (doubleJumpPref, transform.position, Quaternion.identity);
 		}
 		private void wallJump (float angle, bool left)
 		{
+            animator.SetBool("Jump", true);
 				old = transform.position;
 				//rigidbody2D.velocity=new Vector2(rigidbody2D.velocity.x,0f);//this sets y velocity to zero, should this be done
 				//rigidbody2D.AddForce(new Vector2(1,Mathf.Cos(angle))*wallJumpForce);

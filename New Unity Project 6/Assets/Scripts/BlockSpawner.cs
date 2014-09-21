@@ -99,6 +99,7 @@ public class BlockSpawner: MonoBehaviour
 												Invoke ("revertTarget", maximumDelay);
 												trackingPlayer = false;
 						p.setMovementDisabled (true);
+                        p.renderer.enabled=false;
 												foreach (Transform child in transform) {
 														try {
 																child.renderer.enabled = false;
@@ -121,6 +122,7 @@ public class BlockSpawner: MonoBehaviour
 				camTrack.setTarget (this.transform);
 				reverting = false;
 				trackingPlayer = true;
+                renderer.enabled=true;
 				foreach (Transform child in transform) {
 						try {
 								child.renderer.enabled = true;
