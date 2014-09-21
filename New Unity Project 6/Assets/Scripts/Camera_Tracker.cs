@@ -19,9 +19,8 @@ public class Camera_Tracker : MonoBehaviour
             if(players.Length>1){
                 string s="There is more than one player, there are the following: \n";
                 for (int i=0; i<players.Length; i++) {
-                    Debug.Log(i);
                     s+=players [i].name+" at position "+players[i].transform.position+"\n";
-                }
+                   }
                 Debug.Log(s);
             }
 				target = GameObject.FindGameObjectWithTag ("Player").transform;
