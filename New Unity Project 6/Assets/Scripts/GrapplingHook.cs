@@ -5,7 +5,6 @@ using System.Collections;
 [RequireComponent(typeof(ObjectPooler))]
 public class GrapplingHook : MonoBehaviour {
     public float range;
-	private float trailTime;
     private float angle, gap;
     public float changeSpeed;
     Vector2 target, oldTarget;
@@ -20,15 +19,12 @@ public class GrapplingHook : MonoBehaviour {
     private Player_Movement pMov;
     public float minimumDistance;
     public bool invertedScroll;
-	private TrailRenderer trail,origTrail;
-	private GameObject trailSub;
+	private TrailRenderer trail;
     void Start() {
         obj=(GameObject)GameObject.Instantiate(obj);
-		trailSub = transform.GetChild (0).gameObject;
-		trail = obj.GetComponentInChildren<TrailRenderer> ();
-		origTrail = trail;
-		trailTime = trail.time;
-        player=transform.parent.transform.parent.gameObject;
+//		trailSub = transform.GetChild (0).gameObject;
+		trail = obj.GetComponent<TrailRenderer> ();
+		player=transform.parent.transform.parent.gameObject;
         pMov=player.GetComponent<Player_Movement>();
         obj.collider2D.enabled=false;
         obj.transform.parent=transform;
@@ -45,6 +41,15 @@ public class GrapplingHook : MonoBehaviour {
         dj.anchor=new Vector2(0.5f, 0);
         dj.connectedBody=end.rigidbody2D;
     }
+	/// <summary>
+	/// Resets the trail renderer.
+	/// </summary>
+		IEnumerator resetTrailRenderer(){
+		float time = trail.time;
+		trail.time = 0;
+		yield return null;
+		trail.time = time;
+		}
     /// <summary>
     /// removes a grappling hook
     /// </summary>
@@ -57,11 +62,8 @@ public class GrapplingHook : MonoBehaviour {
     /// creates a grappling hook
     /// </summary>
     void grapple() {
+		StartCoroutine (resetTrailRenderer ());
 
-		Destroy (trail);
-		Type trailType = origTrail.GetType();
-		trailSub.AddComponent<trailType>();
-		trail = origTrail;
         grappling=true;
         angle=Mathf.Atan(Mathf.Abs((target.y-transform.position.y)/(target.x-transform.position.x)));
         if (float.IsNaN(angle)) {
@@ -184,6 +186,7 @@ public class GrapplingHook : MonoBehaviour {
     /// </summary>
     /// <param name="towardsCenter"></param>
     void changeLength(bool towardsCenter) {
+		StartCoroutine (resetTrailRenderer ());
         //this prevents clipping through ground
         if (!(!towardsCenter&&pMov.isGrounded())) {
             if (invertedScroll) {
