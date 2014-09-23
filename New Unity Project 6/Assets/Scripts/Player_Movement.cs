@@ -30,8 +30,10 @@ public class Player_Movement : MonoBehaviour
 		private Vector3 movementStop;
 		public Vector3 spawn;
 		private SpawnEffect spawnEffect;
+        private GrapplingHook hook;
 		void Start ()
 		{
+            hook=GetComponentInChildren<GrapplingHook>();
 				animator = GetComponent<Animator> ();
 		spawnEffect=gameObject.GetComponentInChildren<SpawnEffect>();
 				//doubleJumpParticle = GameObject.Find ("doubleJump").GetComponent<DoubleJumpParticle> ();
@@ -190,7 +192,7 @@ public class Player_Movement : MonoBehaviour
 				// If the input is moving the player right and the player is facing left...
 				if (h > 0 && !facingRight) {
 						// ... flip the player.
-						transform.Rotate (new Vector3 (0, 180, 0));
+                    flip();
                   //  transform.localScale=new Vector2(transform.localScale.x*-1, transform.localScale.y);
 						facingRight = true;
 				}
@@ -212,8 +214,10 @@ public class Player_Movement : MonoBehaviour
     /// </summary>
         private void flip() {
             transform.Rotate(new Vector3(0, 180, 0));
+            hook.flip();
            // transform.localScale=new Vector3(transform.localScale.x,transform.localScale.y);
-            facingRight=false;
+            
+            facingRight=!facingRight;
         }
     /// <summary>
     /// sets whether or not the player is grappling

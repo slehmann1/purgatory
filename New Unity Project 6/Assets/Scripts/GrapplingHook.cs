@@ -19,12 +19,12 @@ public class GrapplingHook : MonoBehaviour {
     private Player_Movement pMov;
     public float minimumDistance;
     public bool invertedScroll;
-	private TrailRenderer trail;
+    private TrailRenderer trail;
     void Start() {
         obj=(GameObject)GameObject.Instantiate(obj);
-//		trailSub = transform.GetChild (0).gameObject;
-		trail = obj.GetComponent<TrailRenderer> ();
-		player=transform.parent.transform.parent.gameObject;
+        //		trailSub = transform.GetChild (0).gameObject;
+        trail=obj.GetComponent<TrailRenderer>();
+        player=transform.parent.transform.parent.gameObject;
         pMov=player.GetComponent<Player_Movement>();
         obj.collider2D.enabled=false;
         obj.transform.parent=transform;
@@ -41,15 +41,15 @@ public class GrapplingHook : MonoBehaviour {
         dj.anchor=new Vector2(0.5f, 0);
         dj.connectedBody=end.rigidbody2D;
     }
-	/// <summary>
-	/// Resets the trail renderer.
-	/// </summary>
-		IEnumerator resetTrailRenderer(){
-		float time = trail.time;
-		trail.time = 0;
-		yield return null;
-		trail.time = time;
-		}
+    /// <summary>
+    /// Resets the trail renderer.
+    /// </summary>
+    IEnumerator resetTrailRenderer() {
+        float time=trail.time;
+        trail.time=0;
+        yield return null;
+        trail.time=time;
+    }
     /// <summary>
     /// removes a grappling hook
     /// </summary>
@@ -62,7 +62,7 @@ public class GrapplingHook : MonoBehaviour {
     /// creates a grappling hook
     /// </summary>
     void grapple() {
-		StartCoroutine (resetTrailRenderer ());
+        StartCoroutine(resetTrailRenderer());
 
         grappling=true;
         angle=Mathf.Atan(Mathf.Abs((target.y-transform.position.y)/(target.x-transform.position.x)));
@@ -88,11 +88,18 @@ public class GrapplingHook : MonoBehaviour {
                 angle=Mathf.PI+angle;
             }
         }
+
         connect(obj.transform, transform.position, target);
         obj.SetActive(true);
         endScript.Spawn();
         endScript.setRange(Vector3.Distance(target, transform.position));
         end.transform.position=target;
+    }
+    public void flip() {
+        transform.Rotate(new Vector3(0, 180, 0));
+        //set position to behind the player
+        transform.position=new Vector3(transform.position.x, transform.position.y, -transform.position.z);
+
     }
     /// <summary>
     /// removes thegrappling hook if it exists
@@ -117,8 +124,11 @@ public class GrapplingHook : MonoBehaviour {
         Debug.DrawLine(start, obj.position, Color.red, 2f, false);
         //getting the scale
         float scale=Vector3.Distance(start, end);
-       // scale*=2f;
+        // scale*=2f;
+
+
         obj.transform.localScale=new Vector3(scale/player.transform.lossyScale.x, obj.transform.localScale.y);
+
         if (scale<0) {
             Debug.LogWarning("The spacing is too high!");
         }
@@ -186,7 +196,7 @@ public class GrapplingHook : MonoBehaviour {
     /// </summary>
     /// <param name="towardsCenter"></param>
     void changeLength(bool towardsCenter) {
-		StartCoroutine (resetTrailRenderer ());
+        StartCoroutine(resetTrailRenderer());
         //this prevents clipping through ground
         if (!(!towardsCenter&&pMov.isGrounded())) {
             if (invertedScroll) {
