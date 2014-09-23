@@ -1,6 +1,21 @@
 fileFormatVersion: 2
 guid: 6d92abec722695146896f364117619e4
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: PlayerHead
+    21300002: PlayerHat
+    21300004: PlayerBody
+    21300006: PlayerHand
+    21300008: PlayerFoot_1
+    21300010: PlayerFoot_2
+    21300012: PlayerFoot_3
+    21300014: PlayerFoot_4
+    21300016: PlayerFoot_5
+    21300018: PlayerHand2
+    21300020: PlayerFoot_Forwards
+    21300022: PlayerHead_Forwards
+    21300024: Life
+    21300026: Death
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
