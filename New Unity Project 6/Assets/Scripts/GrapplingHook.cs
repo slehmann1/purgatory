@@ -20,6 +20,7 @@ public class GrapplingHook : MonoBehaviour {
     public float minimumDistance;
     public bool invertedScroll;
     private TrailRenderer trail;
+    private HingeJoint2D endJoint;
     void Start() {
         obj=(GameObject)GameObject.Instantiate(obj);
         //		trailSub = transform.GetChild (0).gameObject;
@@ -37,9 +38,9 @@ public class GrapplingHook : MonoBehaviour {
         end.transform.parent=transform.parent;
         endScript=end.GetComponent<GrapplingEnd>();
         endScript.Setup(obj);
-        HingeJoint2D dj=obj.AddComponent<HingeJoint2D>();
-        dj.anchor=new Vector2(0.5f, 0);
-        dj.connectedBody=end.rigidbody2D;
+        endJoint=obj.AddComponent<HingeJoint2D>();
+        endJoint.anchor=new Vector2(0.5f, 0);
+        endJoint.connectedBody=end.rigidbody2D;
     }
     /// <summary>
     /// Resets the trail renderer.
@@ -94,6 +95,10 @@ public class GrapplingHook : MonoBehaviour {
         endScript.Spawn();
         endScript.setRange(Vector3.Distance(target, transform.position));
         end.transform.position=target;
+
+        //if this is not done, sometimes the hinge joint does not do anything
+        endJoint.enabled=false;
+        endJoint.enabled=true;
     }
     public void flip() {
         transform.Rotate(new Vector3(0, 180, 0));
