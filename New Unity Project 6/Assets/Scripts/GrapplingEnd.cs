@@ -81,6 +81,7 @@ public class GrapplingEnd : MonoBehaviour {
         catch { }
     }
     void OnCollisionEnter2D(Collision2D collision) {
+		Debug.Log ("COLLIDE");
         if (rotationEnabled) {
             float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
             rotation*=180;
