@@ -7,11 +7,12 @@ public class GrapplingHook : MonoBehaviour {
     public float range;
     private float angle, gap;
     public float changeSpeed;
+	public float limit;
     Vector2 target, oldTarget;
     public GameObject obj;
     private GameObject player;
     private RaycastHit2D targetCast;
-    public bool hasHitObj;
+    private bool hasHitObj;
     bool forwards, grappling;
     public GameObject end;
     private GrapplingEnd endScript;
@@ -184,14 +185,19 @@ public class GrapplingHook : MonoBehaviour {
             }
         }
         if (Input.GetAxis ("Change_Grappling_Hook_Length") != 0 && grappling) {
-						if (hasHitObj) {
-								if (Input.GetAxis ("Change_Grappling_Hook_Length") > 0) {
-										if (Vector3.Magnitude (player.transform.position - end.transform.position) > minimumDistance) {
-												changeLength (true);
-										}
-								} else {
-										if (Vector3.Magnitude (player.transform.position - end.transform.position) < range) {
-												changeLength (false);
+			//if above limit
+						if ( (Vector3.Angle (player.transform.position, end.transform.position)) > limit) {
+				Debug.Log(Vector3.Angle (player.transform.position, end.transform.position));
+								if (hasHitObj) {
+										if (Input.GetAxis ("Change_Grappling_Hook_Length") > 0) {
+
+												if (Vector3.Magnitude (player.transform.position - end.transform.position) > minimumDistance) {
+														changeLength (true);
+												}
+										} else {
+												if (Vector3.Magnitude (player.transform.position - end.transform.position) < range) {
+														changeLength (false);
+												}
 										}
 								}
 						}

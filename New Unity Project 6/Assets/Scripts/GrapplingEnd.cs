@@ -22,7 +22,6 @@ public class GrapplingEnd : MonoBehaviour {
         active=true;
         dist.enabled=true;
 		parts.active=true;
-		Debug.Log ("run");
     }
 
     public void Spawn() {
@@ -36,7 +35,6 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=true;
         transform.rotation=initRot;
         parts.active=true;
-		Debug.Log ("run");
     }
     public void deactivate() {
         try {
@@ -45,7 +43,6 @@ public class GrapplingEnd : MonoBehaviour {
             active=false;
             dist.enabled=false;
             parts.active=false;
-			Debug.Log ("run");
         }
         catch {
             
@@ -61,7 +58,6 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=false;
         transform.parent=stem.transform.parent.transform.parent;
         parts=GetComponent<ParticleSystem>();
-		Debug.Log ("run");
     }
     // Use this for initialization
     void Start() {
@@ -81,7 +77,6 @@ public class GrapplingEnd : MonoBehaviour {
         catch { }
     }
     void OnCollisionEnter2D(Collision2D collision) {
-		Debug.Log ("COLLIDE");
         if (rotationEnabled) {
             float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
             rotation*=180;
