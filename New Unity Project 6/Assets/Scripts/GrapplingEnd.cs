@@ -21,6 +21,8 @@ public class GrapplingEnd : MonoBehaviour {
         renderer.enabled=true;
         active=true;
         dist.enabled=true;
+		parts.active=true;
+		Debug.Log ("run");
     }
 
     public void Spawn() {
@@ -34,6 +36,7 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=true;
         transform.rotation=initRot;
         parts.active=true;
+		Debug.Log ("run");
     }
     public void deactivate() {
         try {
@@ -42,6 +45,7 @@ public class GrapplingEnd : MonoBehaviour {
             active=false;
             dist.enabled=false;
             parts.active=false;
+			Debug.Log ("run");
         }
         catch {
             
@@ -57,6 +61,7 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=false;
         transform.parent=stem.transform.parent.transform.parent;
         parts=GetComponent<ParticleSystem>();
+		Debug.Log ("run");
     }
     // Use this for initialization
     void Start() {

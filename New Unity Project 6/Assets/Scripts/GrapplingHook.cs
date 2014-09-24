@@ -201,6 +201,7 @@ public class GrapplingHook : MonoBehaviour {
     /// </summary>
     /// <param name="towardsCenter"></param>
     void changeLength(bool towardsCenter) {
+	
         StartCoroutine(resetTrailRenderer());
         //this prevents clipping through ground
         if (!(!towardsCenter&&pMov.isGrounded())) {
@@ -256,5 +257,8 @@ public class GrapplingHook : MonoBehaviour {
             catch {
             }
         }
+		//if this is not done, sometimes the hinge joint does not do anything
+		endJoint.enabled=false;
+		endJoint.enabled=true;
     }
 }
