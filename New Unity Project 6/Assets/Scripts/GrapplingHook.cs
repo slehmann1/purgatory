@@ -65,6 +65,7 @@ public class GrapplingHook : MonoBehaviour {
     /// creates a grappling hook
     /// </summary>
     void grapple() {
+        
         StartCoroutine(resetTrailRenderer());
 
         grappling=true;
@@ -76,6 +77,25 @@ public class GrapplingHook : MonoBehaviour {
         endScript.Spawn();
         endScript.setRange(Vector3.Distance(target, transform.position));
         end.transform.position=target;
+        
+        //if the player hooks on to something above him, do not need to check limits
+        if (target.y>transform.position.y){
+            ignoreLimits=true;
+        }
+        else {
+            if(hasHitObj){
+                GameObject blockTouched=Physics2D.OverlapCircle(target,1f, 1<<LayerMask.NameToLayer("level")).gameObject;              
+                    ignoreLimits=false;
+                //if the player is beyond the horizontal edge of the block
+                    if (Physics2D.Raycast(transform.position, Vector3.down, range, 1<<LayerMask.NameToLayer("level")).transform.gameObject!=blockTouched) {
+                        ignoreLimits=true;
+                        Debug.Log("WILL IGNORE LIMITS");
+                    }
+                }
+            
+            
+                
+        }
 
         //if this is not done, sometimes the hinge joint does not do anything
         endJoint.enabled=false;
@@ -165,15 +185,8 @@ public class GrapplingHook : MonoBehaviour {
             }
         }
         if (Input.GetAxis ("Change_Grappling_Hook_Length") != 0 && grappling) {
-			//if above limit
-            
-                float currAngle=getAngle(end.transform.position, transform.position)*180/Mathf.PI;
-                currAngle+=180;
-                if (currAngle>360) {
-                    currAngle-=360;
-                }
-                Debug.Log(currAngle);
-                if (currAngle>limit) {
+
+                if (checkLimits()) {
 
 
                     
@@ -194,6 +207,23 @@ public class GrapplingHook : MonoBehaviour {
                 }
             
 				}
+    }
+    private bool checkLimits() {
+        if (ignoreLimits) {
+            return true;
+        }
+        //if above limit
+        float currAngle=getAngle(end.transform.position, transform.position)*180/Mathf.PI;
+        currAngle+=180;
+        if (currAngle>360) {
+            currAngle-=360;
+        }
+        if (currAngle>limit) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     /// <summary>
     /// returns the angle betwwen two points, accounting for quadrants

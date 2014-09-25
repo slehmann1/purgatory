@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 public class GrapplingEnd : MonoBehaviour {
-    private GameObject stem;
+    private GameObject stem,connectedObj;
     private BoxCollider2D coll;
     private bool active;
     private Vector2 position;
@@ -76,6 +76,9 @@ public class GrapplingEnd : MonoBehaviour {
         }
         catch { }
     }
+    public GameObject getConnectedObject() {
+        return connectedObj;
+    }
     void OnCollisionEnter2D(Collision2D collision) {
         if (rotationEnabled) {
             float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
@@ -92,6 +95,7 @@ public class GrapplingEnd : MonoBehaviour {
         }
         
         contacted=true;
+        connectedObj=collision.gameObject;
     }
     // Update is called once per frame
     void Update() {
