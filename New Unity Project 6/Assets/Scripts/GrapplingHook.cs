@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 [RequireComponent(typeof(ObjectPooler))]
 public class GrapplingHook : MonoBehaviour {
+    private bool ignoreLimits;
     public float range;
     private float angle, gap;
     public float changeSpeed;
@@ -68,28 +69,7 @@ public class GrapplingHook : MonoBehaviour {
 
         grappling=true;
         angle=Mathf.Atan(Mathf.Abs((target.y-transform.position.y)/(target.x-transform.position.x)));
-        if (float.IsNaN(angle)) {
-            throw new Exception("The difference between the points to connect is too low. (floating point precision issue)");
-        }
-        if (target.x>transform.position.x) {
-            if (target.y>transform.position.y) {
-                //quad 1
-            }
-            else {
-                //quad 4
-                angle=(Mathf.PI)-angle+(Mathf.PI);
-            }
-        }
-        else {
-            if (target.y>transform.position.y) {
-                //quad 2
-                angle=(Mathf.PI/2)-angle+(Mathf.PI/2);
-            }
-            else {
-                //quad 3
-                angle=Mathf.PI+angle;
-            }
-        }
+        angle=getAngle(target,transform.position);
 
         connect(obj.transform, transform.position, target);
         obj.SetActive(true);
@@ -186,22 +166,66 @@ public class GrapplingHook : MonoBehaviour {
         }
         if (Input.GetAxis ("Change_Grappling_Hook_Length") != 0 && grappling) {
 			//if above limit
-						if ( (Vector3.Angle (player.transform.position, end.transform.position)) > limit) {
-				Debug.Log(Vector3.Angle (player.transform.position, end.transform.position));
-								if (hasHitObj) {
-										if (Input.GetAxis ("Change_Grappling_Hook_Length") > 0) {
+            
+                float currAngle=getAngle(end.transform.position, transform.position)*180/Mathf.PI;
+                currAngle+=180;
+                if (currAngle>360) {
+                    currAngle-=360;
+                }
+                Debug.Log(currAngle);
+                if (currAngle>limit) {
 
-												if (Vector3.Magnitude (player.transform.position - end.transform.position) > minimumDistance) {
-														changeLength (true);
-												}
-										} else {
-												if (Vector3.Magnitude (player.transform.position - end.transform.position) < range) {
-														changeLength (false);
-												}
-										}
-								}
-						}
+
+                    
+                    Debug.DrawLine(transform.position, end.transform.position, Color.red, 5f, false);
+                    if (hasHitObj) {
+                        if (Input.GetAxis("Change_Grappling_Hook_Length")>0) {
+
+                            if (Vector3.Magnitude(player.transform.position-end.transform.position)>minimumDistance) {
+                                changeLength(true);
+                            }
+                        }
+                        else {
+                            if (Vector3.Magnitude(player.transform.position-end.transform.position)<range) {
+                                changeLength(false);
+                            }
+                        }
+                    }
+                }
+            
 				}
+    }
+    /// <summary>
+    /// returns the angle betwwen two points, accounting for quadrants
+    /// </summary>
+    /// <param name="point1"></param>
+    /// <param name="point2">This point is defined as the Origin</param>
+    /// <returns></returns>
+    private float getAngle(Vector2 point1, Vector2 point2) {
+        float ang=Mathf.Atan(Mathf.Abs((point1.y-point2.y)/(point1.x-point2.x)));
+        if (float.IsNaN(ang)) {
+            throw new Exception("The difference between the points to connect is too low. (floating point precision issue)");
+        }
+        if (point1.x>point2.x) {
+            if (point1.y>point2.y) {
+                //quad 1
+            }
+            else {
+                //quad 4
+                ang=(Mathf.PI)-ang+(Mathf.PI);
+            }
+        }
+        else {
+            if (point1.y>point2.y) {
+                //quad 2
+                ang=(Mathf.PI/2)-ang+(Mathf.PI/2);
+            }
+            else {
+                //quad 3
+                ang=Mathf.PI+ang;
+            }
+        }
+        return ang;
     }
     /// <summary>
     /// Changes the length of the grapplingHook
@@ -232,29 +256,7 @@ public class GrapplingHook : MonoBehaviour {
             }
             removeLine();
             try {
-                angle=Mathf.Atan(Mathf.Abs((target.y-transform.position.y)/(target.x-transform.position.x)));
-                if (float.IsNaN(angle)) {
-                    throw new Exception("The difference between the points to connect is too low. (floating point precision issue)");
-                }
-                if (target.x>transform.position.x) {
-                    if (target.y>transform.position.y) {
-                        //quad 1
-                    }
-                    else {
-                        //quad 4
-                        angle=(Mathf.PI)-angle+(Mathf.PI);
-                    }
-                }
-                else {
-                    if (target.y>transform.position.y) {
-                        //quad 2
-                        angle=(Mathf.PI/2)-angle+(Mathf.PI/2);
-                    }
-                    else {
-                        //quad 3
-                        angle=Mathf.PI+angle;
-                    }
-                }
+                angle=getAngle(target,transform.position);
                 connect(obj.transform, transform.position, target);
                 obj.SetActive(true);
                 endScript.updateLength();
