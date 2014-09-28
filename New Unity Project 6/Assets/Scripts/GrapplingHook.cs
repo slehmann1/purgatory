@@ -83,15 +83,16 @@ public class GrapplingHook : MonoBehaviour {
             ignoreLimits=true;
         }
         else {
-            if(hasHitObj){
-                GameObject blockTouched=Physics2D.OverlapCircle(target,1f, 1<<LayerMask.NameToLayer("level")).gameObject;              
+            if (hasHitObj) {
+                GameObject blockTouched=Physics2D.OverlapCircle(target, 1f, 1<<LayerMask.NameToLayer("level")).gameObject;
+                if (blockTouched) {//it is a possibility that there is no block within the circle
                     ignoreLimits=false;
-                //if the player is beyond the horizontal edge of the block
+                    //if the player is beyond the horizontal edge of the block
                     if (Physics2D.Raycast(transform.position, Vector3.down, range, 1<<LayerMask.NameToLayer("level")).transform.gameObject!=blockTouched) {
                         ignoreLimits=true;
-                        Debug.Log("WILL IGNORE LIMITS");
                     }
                 }
+            }
             
             
                 
@@ -204,6 +205,19 @@ public class GrapplingHook : MonoBehaviour {
                             }
                         }
                     }
+                    else {
+                        if (Input.GetAxis("Change_Grappling_Hook_Length")>0) {
+
+                            if (Vector3.Magnitude(player.transform.position-end.transform.position)>minimumDistance) {
+                                changeLengthWithoutPlayerMovement(true);
+                            }
+                        }
+                        else {
+                            if (Vector3.Magnitude(player.transform.position-end.transform.position)<range) {
+                                changeLengthWithoutPlayerMovement(false);
+                            }
+                        }
+                    }
                 }
             
 				}
@@ -258,7 +272,56 @@ public class GrapplingHook : MonoBehaviour {
         return ang;
     }
     /// <summary>
-    /// Changes the length of the grapplingHook
+    /// changes the length of the grappling hook without moving the player
+    /// </summary>
+    void changeLengthWithoutPlayerMovement(bool towardsCenter) {
+        StartCoroutine(resetTrailRenderer());
+            if (invertedScroll) {
+                towardsCenter=!towardsCenter;
+            }
+            Vector3 newVec=player.transform.position-end.transform.position;
+            newVec*=-1;
+            newVec.Normalize();
+            
+            if (towardsCenter) {
+                //towards center
+                newVec*=changeSpeed;
+                if (Vector2.Distance(player.transform.position+newVec, end.transform.position)>=minimumDistance) {
+                    target-=(Vector2)(newVec);
+                }
+            }else {
+                //away from hook
+                if (Vector2.Distance(player.transform.position-newVec, end.transform.position)>=minimumDistance) {
+                    if (Vector2.Distance((target+(Vector2)newVec), transform.position)<=range) {
+                        newVec*=changeSpeed;
+                        target+=(Vector2)(newVec);
+                    }
+                    else {
+                        //set it to as far away as possible
+                        target=transform.position+(newVec*range);
+                        Debug.Log(Vector2.Distance(target, transform.position));
+                    }
+                }
+            }
+            removeLine();
+            try {
+                angle=getAngle(target, transform.position);
+                connect(obj.transform, transform.position, target);
+                obj.SetActive(true);
+                endScript.updateLength();
+                endScript.setRange(Vector3.Distance(target, transform.position));
+                end.transform.position=target;
+            }
+            catch {
+            }
+        
+        //if this is not done, sometimes the hinge joint does not do anything
+        endJoint.enabled=false;
+        endJoint.enabled=true;
+
+    }
+    /// <summary>
+    /// Changes the length of the grapplingHook by moving the player
     /// </summary>
     /// <param name="towardsCenter"></param>
     void changeLength(bool towardsCenter) {
