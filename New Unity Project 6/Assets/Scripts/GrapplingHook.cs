@@ -103,10 +103,15 @@ public class GrapplingHook : MonoBehaviour {
         endJoint.enabled=true;
     }
     public void flip() {
-        float newX=-1*(end.transform.position.x-transform.position.x)+transform.position.x;
-        transform.Rotate(new Vector3(0, 180, 0));
-        end.transform.position=new Vector3(newX,end.transform.position.y,end.transform.position.z);//prevents the hook from shifting closer and closer to 90 degrees up
-        //set position to behind the player
+        if (!hasHitObj) {
+            float newX=-1*(end.transform.position.x-transform.position.x)+transform.position.x;
+            transform.Rotate(new Vector3(0, 180, 0));
+            end.transform.position=new Vector3(newX, end.transform.position.y, end.transform.position.z);//prevents the hook from shifting closer and closer to 90 degrees up
+        }
+        else {
+            transform.Rotate(new Vector3(0, 180, 0));
+        }
+            //set position to behind the player
         transform.position=new Vector3(transform.position.x, transform.position.y, -transform.position.z);
 
     }
