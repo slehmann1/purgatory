@@ -50,6 +50,7 @@
      <Compile Include="Assets\Editor\ConnectObjectsEditor.cs" />
      <Compile Include="Assets\Editor\ConnectViaDuplicationEditor.cs" />
      <Compile Include="Assets\Editor\GrapplingHookEditor.cs" />
+     <Compile Include="Assets\Editor\RemoveInternalShapes.cs" />
      <Compile Include="Assets\Editor\UsedAssets.cs" />
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
  <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>

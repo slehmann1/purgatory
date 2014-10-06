@@ -257,7 +257,7 @@ GUILayout.EndHorizontal();
 			toggles.Add(kvp.Key.ToString(), new List<bool>());
 		}
 
-		bool saveme = false;
+
 		for (int i = 0; i < assetList.Length; i++)
 		{
 			if (!usedAssets.Contains(assetList[i]))

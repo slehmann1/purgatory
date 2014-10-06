@@ -361,7 +361,7 @@ public class ConnectViaDuplicationEditor : Editor
 				}
 				//Debug.Log(obj.lossyScale.x);
 				//trig
-				float degrees = Mathf.Atan ((end.y - start.y) / (end.x - start.x));
+				//float degrees = Mathf.Atan ((end.y - start.y) / (end.x - start.x));
 
 
 
