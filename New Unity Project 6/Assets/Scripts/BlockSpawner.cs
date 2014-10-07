@@ -53,7 +53,7 @@ public class BlockSpawner: MonoBehaviour
 						f.transform.parent = parent;
 						return g;
 				} else {
-                    GameObject g=(GameObject)Instantiate(silhouette, new Vector2(transform.position.x, transform.position.y-yoff-obj.renderer.bounds.size.y/2), Quaternion.identity);
+                    GameObject g=(GameObject)Instantiate(silhouette, new Vector3(transform.position.x, transform.position.y-yoff-obj.renderer.bounds.size.y/2,transform.position.z-5), Quaternion.identity);
                     g.transform.parent=parent;
                     return null;
 				}
@@ -116,7 +116,6 @@ public class BlockSpawner: MonoBehaviour
 												GetComponent<BoxCollider2D> ().enabled = false;
 										} else {
 						heartsList.flash();
-												//heartsList.addLives(1);
 										}
 								}
                                 else {
