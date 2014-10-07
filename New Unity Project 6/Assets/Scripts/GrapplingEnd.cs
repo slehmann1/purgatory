@@ -21,7 +21,7 @@ public class GrapplingEnd : MonoBehaviour {
         renderer.enabled=true;
         active=true;
         dist.enabled=true;
-		parts.active=true;
+        parts.enableEmission=true;
     }
 
     public void Spawn() {
@@ -34,7 +34,7 @@ public class GrapplingEnd : MonoBehaviour {
         initRot=transform.rotation;
         dist.enabled=true;
         transform.rotation=initRot;
-        parts.active=true;
+        parts.enableEmission=true;
     }
     public void deactivate() {
         try {
@@ -42,7 +42,7 @@ public class GrapplingEnd : MonoBehaviour {
             renderer.enabled=false;
             active=false;
             dist.enabled=false;
-            parts.active=false;
+            parts.enableEmission=false;
         }
         catch {
             
@@ -80,22 +80,24 @@ public class GrapplingEnd : MonoBehaviour {
         return connectedObj;
     }
     void OnCollisionEnter2D(Collision2D collision) {
-        if (rotationEnabled) {
-            float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
-            rotation*=180;
-            rotation/=Mathf.PI;
-            //Debug.Log(rotation);
-            rot=Quaternion.Euler(new Vector3(0f, 0f, rotation));
+        if (active) {
+            if (rotationEnabled) {
+                float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
+                rotation*=180;
+                rotation/=Mathf.PI;
+                //Debug.Log(rotation);
+                rot=Quaternion.Euler(new Vector3(0f, 0f, rotation));
+            }
+            transform.parent=null;
+            rigidbody2D.isKinematic=true;
+            transform.localRotation=Quaternion.identity;
+            if (!contacted&&rotationEnabled) {//if it has simply changed length, will not update the rotation
+                transform.rotation=rot*initRot;
+            }
+
+            contacted=true;
+            connectedObj=collision.gameObject;
         }
-        transform.parent=null;
-        rigidbody2D.isKinematic=true;
-        transform.localRotation=Quaternion.identity;
-        if (!contacted&&rotationEnabled) {//if it has simply changed length, will not update the rotation
-            transform.rotation=rot*initRot;
-        }
-        
-        contacted=true;
-        connectedObj=collision.gameObject;
     }
     // Update is called once per frame
     void Update() {
