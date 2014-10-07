@@ -25,7 +25,6 @@ C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\U
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\obj\Debug\UnityVS.New Unity Project 6.CSharp.Editor.csprojResolveAssemblyReference.cache
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\obj\Debug\Assembly-CSharp-Editor.dll
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\obj\Debug\Assembly-CSharp-Editor.pdb
-C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll.CodeAnalysisLog.xml
-C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll.lastcodeanalysissucceeded
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\UnityEditor.Graphs.dll
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\UnityEditor.Graphs.xml
+C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb

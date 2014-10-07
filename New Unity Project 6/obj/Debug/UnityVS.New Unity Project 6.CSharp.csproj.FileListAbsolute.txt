@@ -18,5 +18,3 @@ C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\U
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\obj\Debug\Assembly-CSharp.dll
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\obj\Debug\Assembly-CSharp.pdb
 C:\Users\Samuel\Documents\purgatory\New Unity Project 6\obj\Debug\UnityVS.New Unity Project 6.CSharp.csprojResolveAssemblyReference.cache
-C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.CodeAnalysisLog.xml
-C:\Users\Samuel\Documents\purgatory\New Unity Project 6\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll.lastcodeanalysissucceeded

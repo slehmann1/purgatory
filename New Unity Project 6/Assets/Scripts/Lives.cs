@@ -22,6 +22,7 @@ public class Lives : MonoBehaviour
 						while (cont) {
 								if (!lives [i].GetComponent<LifeBehaviour> ().isAlive ()) {
 										i++;
+                                        Debug.Log("DONE");
 								} else {
 										cont = false;
 										i--;
@@ -30,11 +31,13 @@ public class Lives : MonoBehaviour
 				} catch {
 				}
 				while (amount>0&&i>=0) {
-						lives [i].GetComponent<LifeBehaviour> ().life ();
+						lives [i].GetComponent<LifeBehaviour> ().life();
 						i--;
 						amount--;
+                        Debug.Log("DONE");
 				}
 				while (amount>0) {
+                    Debug.Log("ADDED");
 						amount--;
 						addLife ();
 				}
@@ -75,20 +78,7 @@ public class Lives : MonoBehaviour
 		public void flash(){
 		RedFlash.GetComponent<RedFlash> ().flash (true);
 	}
-		// Update is called once per frame
-		void Update ()
-		{
-				if (Input.GetButtonDown (KeyCode)) {
-						if (livesLeft > 0) {
-								if (removal) {
-										suicide ();//this means it is pills
-								} else {//needs to change the cameras target
-								}
-						} else {
-								flash();
-						}
-				}
-		}
+
 		public void suicide ()
 		{
 				livesLeft--;

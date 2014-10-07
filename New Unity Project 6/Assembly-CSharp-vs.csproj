@@ -83,6 +83,7 @@
      <Compile Include="Assets\Scripts\Update.cs" />
      <Compile Include="Assets\Scripts\VanText.cs" />
      <Compile Include="Assets\Scripts\WaypointedPath.cs" />
+     <Compile Include="Assets\Scripts\destroyAfter.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 public class BlockSpawner: MonoBehaviour
 {
-		public GameObject Block, Gravestone;
+		public GameObject Block, BlockSilhouette, Gravestone,GravestoneSilhouette;
 		public string pillSpawn, heartSpawn;
 		public float blockYOffset, gravesYOffset;
 		public Transform parent;
@@ -37,7 +37,7 @@ public class BlockSpawner: MonoBehaviour
 				}
 				return true;
 		}
-		private GameObject createBlock (GameObject obj, float yoff)
+		private GameObject createBlock (GameObject obj,GameObject silhouette, float yoff)
 		{
 				if (possibleToSpawn (obj, yoff)) {
                     hook.removeHook();
@@ -53,7 +53,9 @@ public class BlockSpawner: MonoBehaviour
 						f.transform.parent = parent;
 						return g;
 				} else {
-						return null;
+                    GameObject g=(GameObject)Instantiate(silhouette, new Vector2(transform.position.x, transform.position.y-yoff-obj.renderer.bounds.size.y/2), Quaternion.identity);
+                    g.transform.parent=parent;
+                    return null;
 				}
 		}
 		public void Update ()
@@ -79,20 +81,25 @@ public class BlockSpawner: MonoBehaviour
                         if (pillsList.getLivesLeft()>0) {
 
 
-                            GameObject g=createBlock(Block, blockYOffset);
+                            GameObject g=createBlock(Block,BlockSilhouette, blockYOffset);
                             if (g!=null) {
                                 blocks.Add(g);
+                                pillsList.suicide();
                             }
                             else {
                                 pillsList.flash();
                             }
                         }
+                        else {
+                            pillsList.flash();
+                        }
 
-                        
-                    }
+
+                    } 
+                    if (Input.GetButtonDown(heartSpawn)&&!p.getMovementDisabled()) {
 						if (heartsList.getLivesLeft () > 0) {
-								if (Input.GetButtonDown (heartSpawn)&&!p.getMovementDisabled()) {
-										GameObject g = createBlock (Gravestone, gravesYOffset);
+								
+										GameObject g = createBlock (Gravestone,GravestoneSilhouette, gravesYOffset);
 										if (g != null) {
 												graves.Add (g);
 												camTrack.setTarget ((graves [graves.Count - 1]).transform);
@@ -112,7 +119,11 @@ public class BlockSpawner: MonoBehaviour
 												//heartsList.addLives(1);
 										}
 								}
-						}
+                                else {
+                                    heartsList.flash();
+                                }
+                        }
+                        
 				}
 		}
 		private void revertTarget ()
