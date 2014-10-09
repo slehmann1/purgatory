@@ -46,9 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\2DWater\Scripts\C#\SpringScript.cs" />
-     <Compile Include="Assets\2DWater\Scripts\C#\Water.cs" />
-     <Compile Include="Assets\2DWater\Scripts\C#\WaveSimulator.cs" />
+     <Compile Include="Assets\LiquidPhysics\Scripts\DynamicParticle.cs" />
+     <Compile Include="Assets\LiquidPhysics\Scripts\ParticleGenerator.cs" />
      <Compile Include="Assets\Scripts\AntennaSetup.cs" />
      <Compile Include="Assets\Scripts\BlockSpawner.cs" />
      <Compile Include="Assets\Scripts\Camera_Tracker.cs" />
@@ -88,7 +87,9 @@
      <Compile Include="Assets\Scripts\WaypointedPath.cs" />
      <Compile Include="Assets\Scripts\anchoredJoint2DConnectedAnchorSetter.cs" />
      <Compile Include="Assets\Scripts\destroyAfter.cs" />
+     <None Include="Assets\LiquidPhysics\Shaders\Metaballs_Multiple.shader" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
+     <None Include="Assets\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
