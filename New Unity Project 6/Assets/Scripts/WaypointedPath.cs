@@ -23,7 +23,9 @@ public class WaypointedPath : MonoBehaviour {
 	void Update(){
 		if(cont){
 		Vector3 oldPos=transform.position;
+        float oldZ=transform.position.z;
 		transform.position=Vector2.MoveTowards(transform.position,waypoints[index].waypoint.position,step*Time.deltaTime);
+        transform.position=new Vector3(transform.position.x, transform.position.y, oldZ);
 		if(oldPos==transform.position){
 				Invoke("contin", waypoints[index].delay);
                 previndex++;

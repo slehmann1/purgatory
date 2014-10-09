@@ -83,6 +83,7 @@
      <Compile Include="Assets\Scripts\Update.cs" />
      <Compile Include="Assets\Scripts\VanText.cs" />
      <Compile Include="Assets\Scripts\WaypointedPath.cs" />
+     <Compile Include="Assets\Scripts\anchoredJoint2DConnectedAnchorSetter.cs" />
      <Compile Include="Assets\Scripts\destroyAfter.cs" />
   </ItemGroup>
   <ItemGroup>
