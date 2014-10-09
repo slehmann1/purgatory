@@ -20,10 +20,8 @@ public class CarBehaviour : MonoBehaviour
 		void OnTriggerEnter2D (Collider2D other)
 		{
 				if (other.tag == "carSpeedChanger") {
-                    Debug.Log("SPEED CHANGE");
 						if (!speedChanging) {
 								targetSpeed = other.GetComponent<CarDecelerator> ().getEndSpeed ();
-                                Debug.Log("SPEED CHANGE");
 								if (other.GetComponent<CarDecelerator> ().getEndPoint () != null) {
 										GameObject endingPoint = other.GetComponent<CarDecelerator> ().getEndPoint ();
 										//d=(vf+vi/2)t

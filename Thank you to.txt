@@ -4,3 +4,5 @@ https://gist.github.com/karl-/4076464 and http://zaxisgames.blogspot.com.tr/2012
 http://gifstumblr.com/images/plasma-ball_979.gif - Plasma ball
 Eduard Bosch: http://forum.unity3d.com/threads/create-from-sprite-missing.210443/#post-1528675
 Eric 5H5: http://forum.unity3d.com/threads/physics2d-polygon-collider-how-to-remove-shape.225818/
+Nick Gravelyn: https://www.assetstore.unity3d.com/en/#!/content/4851
+Lions4:https://www.assetstore.unity3d.com/en/#!/content/8716
