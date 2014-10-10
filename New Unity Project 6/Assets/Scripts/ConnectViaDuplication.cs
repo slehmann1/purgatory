@@ -6,9 +6,12 @@ public class ConnectViaDuplication : MonoBehaviour {
 	public float scale,spacing;
 	public int number;
 	public bool delChildren;
-	public bool hingeJointSetup, chooseNumber;
+	public bool hingeJointSetup, chooseNumber,fixedEnds;
 	public enum mode{chooseNumber, chooseSpacing};
-	public mode choice;
+    public mode modeChoice;
+    public enum fillOption {increaseSizeToFill,AddExtra,DontFill};
+    public fillOption fillChoice;
+
 	private List<GameObject> objs{
 		get{
 			return objs;
