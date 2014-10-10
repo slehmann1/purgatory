@@ -53,20 +53,21 @@
      <Compile Include="Assets\Editor\RemoveInternalShapes.cs" />
      <Compile Include="Assets\Editor\UnityLock\UnityLock.cs" />
      <Compile Include="Assets\Editor\UsedAssets.cs" />
-     <None Include="Assets\LiquidPhysics\Shaders\Metaballs_Multiple.shader" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
-     <None Include="Assets\README.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>F:/Desktop/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
- <HintPath>F:/Desktop/purgatory/New Unity Project 6/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
  </Reference>
  <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
- <HintPath>F:/Desktop/purgatory/New Unity Project 6/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
  </Reference>
  <Reference Include="UnityVS.VersionSpecific">
- <HintPath>F:/Desktop/purgatory/New Unity Project 6/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
