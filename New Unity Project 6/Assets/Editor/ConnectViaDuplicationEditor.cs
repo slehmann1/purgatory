@@ -296,6 +296,7 @@ public class ConnectViaDuplicationEditor : Editor {
 
         oldPos.x=x;
         oldPos.y=y;
+		float newScale;
         if (myTarget.number>startAmount) {
             startAmount=myTarget.number;
             createPool();
@@ -307,7 +308,8 @@ public class ConnectViaDuplicationEditor : Editor {
                     gap*=(1+differenceDist/Vector3.Distance(myTarget.startPoint, myTarget.endPoint));
                     break;
                 case ConnectViaDuplication.fillOption.increaseSizeToFill:
-                    gap+=differenceDist/myTarget.number;
+				myTarget.number+=1;
+				 newScale = Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number)/myTarget.number;
                     break;
             }
         }
@@ -365,7 +367,6 @@ public class ConnectViaDuplicationEditor : Editor {
             }
             newPos=new Vector2(x, y);
             connect(g.transform, oldPos, newPos);
-            //	Debug.Log(oldPos+ " "+newPos);
             oldPos=newPos;
 
             if (myTarget.endPoint.x>myTarget.startPoint.x) {
