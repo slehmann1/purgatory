@@ -9,7 +9,7 @@ public class ConnectViaDuplication : MonoBehaviour {
 	public bool hingeJointSetup, chooseNumber,fixedEnds;
 	public enum mode{chooseNumber, chooseSpacing};
     public mode modeChoice;
-    public enum fillOption {increaseSizeToFill,AddExtra,DontFill};
+    public enum fillOption {increaseSizeToFill,addExtra,noGaps,spaceEvenly};
     public fillOption fillChoice;
 
 	private List<GameObject> objs{
