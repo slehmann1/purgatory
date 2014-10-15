@@ -269,15 +269,22 @@ public class ConnectViaDuplicationEditor : Editor {
             myTarget.number=(int)dist;
             float startGap=0;
 
+			switch(myTarget.fillChoice){
+			case ConnectViaDuplication.fillOption.addExtra:
+				break;
+			case ConnectViaDuplication.fillOption.noGaps:
+				startGap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)%(gap*myTarget.number);
+				break;
+			default:
+				float makeUp=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number);
+				break;
+
+			}
             //myTarget.number--;
-            if (myTarget.fillChoice!=ConnectViaDuplication.fillOption.noGaps) {
-                float makeUp=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number);
-            }
-            else {
-                startGap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)%(gap*myTarget.number);
-            }
+
+
             if (myTarget.endPoint.x<myTarget.startPoint.x) {
-                x=oldPos.x-((Mathf.Cos(angle)*startGap/2));
+                x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
             }
             else {
                 x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
@@ -307,9 +314,13 @@ public class ConnectViaDuplicationEditor : Editor {
                 case ConnectViaDuplication.fillOption.spaceEvenly:
                     gap*=(1+differenceDist/Vector3.Distance(myTarget.startPoint, myTarget.endPoint));
                     break;
-                case ConnectViaDuplication.fillOption.increaseSizeToFill:
+                case ConnectViaDuplication.fillOption.addExtra:
 				myTarget.number+=1;
-				 newScale = Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number)/myTarget.number;
+				newScale = Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number)/myTarget.number;
+				gap = Vector3.Distance(myTarget.startPoint, myTarget.endPoint)/myTarget.number;
+			//	gap*=newScale;
+				Debug.Log (newScale+" "+gap);
+
                     break;
             }
         }
