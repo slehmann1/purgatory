@@ -201,165 +201,210 @@ public class ConnectViaDuplicationEditor : Editor {
         }
 
     }
+    void numberChosenSetup() { 
 
+}
     void refresh() {
-        clearLog();
+        try {
+            
+            clearLog();
 
 
 
 
-        //List<GameObject> children = new List<GameObject> ();
-        //	foreach (Transform child in myTarget.gameObject.transform)
-        //		children.Add (child.gameObject);
-        //children.ForEach (child => DestroyImmediate (child));
-        float x=myTarget.startPoint.x, y=myTarget.startPoint.y;
-        Vector3 newPos, oldPos;
-        oldPos=myTarget.startPoint;
-        if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber) {
+            //List<GameObject> children = new List<GameObject> ();
+            //	foreach (Transform child in myTarget.gameObject.transform)
+            //		children.Add (child.gameObject);
+            //children.ForEach (child => DestroyImmediate (child));
+            float x=myTarget.startPoint.x, y=myTarget.startPoint.y;
+            Vector3 newPos, oldPos;
+            oldPos=myTarget.startPoint;
+            float startGap=0;
+            if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber) {
 
 
-            if (myTarget.number>1) {
-                gap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
+                if (myTarget.number>1) {
+                    gap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
 
-                gap/=myTarget.number;
-                gap-=(myTarget.spacing);
-                if (myTarget.spacing!=0) {
-                    float startGap=myTarget.spacing;
-                    Debug.Log(startGap);
-                    //float startGap=0;
-                    if (myTarget.endPoint.x>myTarget.startPoint.x) {
-                        x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
+                    gap/=myTarget.number;
+                    gap-=(myTarget.spacing);
+                    if (myTarget.spacing!=0) {
+                         startGap=myTarget.spacing;
+                        //float startGap=0;
+                        
+                        //gap+= (myTarget.connector.renderer.bounds.extents.x/2);
+                        //myTarget.spacing = myTarget.spacing + gap;
+
                     }
-                    else {
-                        x=oldPos.x-((Mathf.Cos(angle)*startGap/2));
-                    }
-                    if (myTarget.endPoint.y>myTarget.startPoint.y) {
-                        y=oldPos.y+((Mathf.Sin(angle)*startGap/2));
-                    }
-                    else {
-                        y=oldPos.y-((Mathf.Sin(angle)*startGap/2));
-                    }
-                    //gap+= (myTarget.connector.renderer.bounds.extents.x/2);
-                    //myTarget.spacing = myTarget.spacing + gap;
+                }
+                else {
+                    gap=0;
 
                 }
+
             }
             else {
-                gap=0;
+                float dist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
 
+                gap=myTarget.spacing+myTarget.connector.GetComponent<BoxCollider2D>().size.x;
+                //	gap=Mathf.Cos (angle)*Mathf.Cos (angle);
+                //	gap+=(Mathf.Sin (angle)*Mathf.Sin (angle));
+                //		gap=Mathf.Pow(gap,0.5f);
+                //			gap*=myTarget.spacing;
+
+
+
+
+                dist/=gap;
+                if (dist!=myTarget.number) {
+                    removeExcess();
+                }
+                myTarget.number=(int)dist;
+                 startGap=0;
+
+                switch (myTarget.fillChoice) {
+                    case ConnectViaDuplication.fillOption.noGaps:
+                        startGap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)%(gap*myTarget.number);
+                        break;
+                    default:
+                        float makeUp=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number);
+                        break;
+
+                }
+                //myTarget.number--;
+
+
+               
             }
 
-        }
-        else {
-            float dist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
-
-            gap=myTarget.spacing+myTarget.connector.GetComponent<BoxCollider2D>().size.x;
-            //	gap=Mathf.Cos (angle)*Mathf.Cos (angle);
-            //	gap+=(Mathf.Sin (angle)*Mathf.Sin (angle));
-            //		gap=Mathf.Pow(gap,0.5f);
-            //			gap*=myTarget.spacing;
 
 
 
 
-            dist/=gap;
-            if (dist!=myTarget.number) {
-                removeExcess();
+            oldPos.x=x;
+            oldPos.y=y;
+
+            if (myTarget.modeChoice!=ConnectViaDuplication.mode.chooseNumber) {
+                float differenceDist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number);
+                switch (myTarget.fillChoice) {
+                    case ConnectViaDuplication.fillOption.increaseSizeToFill:
+                        if (differenceDist!=0) {
+                            try {
+                                //	gap*=newScale;
+
+                                if (myTarget.number>1) {
+                                    gap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
+
+                                    gap/=myTarget.number;
+                                    gap-=(myTarget.spacing);
+                                    if (myTarget.spacing!=0) {
+                                        startGap=myTarget.spacing;
+                                        Debug.Log(startGap);
+                                        if (myTarget.endPoint.x>myTarget.startPoint.x) {
+                                            x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
+                                        }
+                                        else {
+                                            x=oldPos.x-((Mathf.Cos(angle)*startGap/2));
+                                        }
+                                        if (myTarget.endPoint.y>myTarget.startPoint.y) {
+                                            y=oldPos.y+((Mathf.Sin(angle)*startGap/2));
+                                        }
+                                        else {
+                                            y=oldPos.y-((Mathf.Sin(angle)*startGap/2));
+                                        }
+
+
+                                    }
+                                }
+                                else {
+                                    gap=0;
+
+                                }
+                            }
+                            catch { }//divides evenly
+                        }
+                        break;
+                    case ConnectViaDuplication.fillOption.spaceEvenly:
+                        gap*=(1+differenceDist/Vector3.Distance(myTarget.startPoint, myTarget.endPoint));
+                        break;
+                    case ConnectViaDuplication.fillOption.addExtra:
+                        if (differenceDist!=0) {
+                            try {
+                                myTarget.number+=1;
+                                //	gap*=newScale;
+
+                                if (myTarget.number>1) {
+                                    gap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
+
+                                    gap/=myTarget.number;
+                                    gap-=(myTarget.spacing);
+                                    if (myTarget.spacing!=0) {
+                                         startGap=myTarget.spacing;
+                                        Debug.Log(startGap);
+                                        if (myTarget.endPoint.x>myTarget.startPoint.x) {
+                                            x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
+                                        }
+                                        else {
+                                            x=oldPos.x-((Mathf.Cos(angle)*startGap/2));
+                                        }
+                                        if (myTarget.endPoint.y>myTarget.startPoint.y) {
+                                            y=oldPos.y+((Mathf.Sin(angle)*startGap/2));
+                                        }
+                                        else {
+                                            y=oldPos.y-((Mathf.Sin(angle)*startGap/2));
+                                        }
+
+
+                                    }
+                                }
+                                else {
+                                    gap=0;
+
+                                }
+                            }
+                            catch { }//divides evenly
+                        }
+                        break;
+                }
+                Debug.Log(gap);
             }
-            myTarget.number=(int)dist;
-            float startGap=0;
-
-			switch(myTarget.fillChoice){
-			case ConnectViaDuplication.fillOption.addExtra:
-				break;
-			case ConnectViaDuplication.fillOption.noGaps:
-				startGap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)%(gap*myTarget.number);
-				break;
-			default:
-				float makeUp=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number);
-				break;
-
-			}
-            //myTarget.number--;
-
-
-            if (myTarget.endPoint.x<myTarget.startPoint.x) {
+            if (myTarget.endPoint.x>myTarget.startPoint.x) {
                 x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
             }
             else {
-                x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
+                x=oldPos.x-((Mathf.Cos(angle)*startGap/2));
             }
-            if (myTarget.endPoint.y<myTarget.startPoint.y) {
+            if (myTarget.endPoint.y>myTarget.startPoint.y) {
                 y=oldPos.y+((Mathf.Sin(angle)*startGap/2));
             }
             else {
                 y=oldPos.y-((Mathf.Sin(angle)*startGap/2));
             }
-        }
-
-
-
-
-
-        oldPos.x=x;
-        oldPos.y=y;
-		float newScale;
-        if (myTarget.number>startAmount) {
-            startAmount=myTarget.number;
-            createPool();
-        }
-        if (myTarget.modeChoice!=ConnectViaDuplication.mode.chooseNumber) {
-            float differenceDist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number);
-            switch (myTarget.fillChoice) {
-                case ConnectViaDuplication.fillOption.spaceEvenly:
-                    gap*=(1+differenceDist/Vector3.Distance(myTarget.startPoint, myTarget.endPoint));
-                    break;
-                case ConnectViaDuplication.fillOption.addExtra:
-				myTarget.number+=1;
-				newScale = Vector3.Distance(myTarget.startPoint, myTarget.endPoint)-(gap*myTarget.number)/myTarget.number;
-				gap = Vector3.Distance(myTarget.startPoint, myTarget.endPoint)/myTarget.number;
-			//	gap*=newScale;
-				Debug.Log (newScale+" "+gap);
-
-                    break;
-            }
-        }
-        for (int i=1; i<=myTarget.number; i++) {
-            //trig to calculate the transform of the next gameObject
-            GameObject g;
-            try {
-                g=objs [i-1];
-            }
-            catch {
+            if (myTarget.number>startAmount) {
+                startAmount=myTarget.number;
                 createPool();
-                g=objs [i-1];
             }
-            g.SetActive(true);
-            if (g.collider!=null) {
-                g.collider.enabled=false;
-                g.transform.parent=myTarget.transform;
-                g.collider.enabled=true;
-            }
-            else {
-                g.transform.parent=myTarget.transform;
-            }
-            if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber) {
-                if (myTarget.endPoint.x>myTarget.startPoint.x) {
-                    x=oldPos.x+(Mathf.Abs(Mathf.Cos(angle)*gap));
+            for (int i=1; i<=myTarget.number; i++) {
+                //trig to calculate the transform of the next gameObject
+                GameObject g;
+                try {
+                    g=objs [i-1];
+                }
+                catch {
+                    Debug.Log("Recreating the pool");
+                    createPool();
+                    g=objs [i-1];
+                }
+                g.SetActive(true);
+                if (g.collider!=null) {
+                    g.collider.enabled=false;
+                    g.transform.parent=myTarget.transform;
+                    g.collider.enabled=true;
                 }
                 else {
-
-                    x=oldPos.x-(Mathf.Abs(Mathf.Cos(angle)*gap));
-                }
-                if (myTarget.endPoint.y>myTarget.startPoint.y) {
-                    y=oldPos.y+(Mathf.Abs(Mathf.Sin(angle)*gap));
-                }
-                else {
-                    y=oldPos.y-(Mathf.Abs(Mathf.Sin(angle)*gap));
+                    g.transform.parent=myTarget.transform;
                 }
 
-            }
-            else {
 
                 if (myTarget.endPoint.x>myTarget.startPoint.x) {
                     x=oldPos.x+(Mathf.Abs(Mathf.Cos(angle)*gap));
@@ -375,36 +420,44 @@ public class ConnectViaDuplicationEditor : Editor {
                 }
 
 
-            }
-            newPos=new Vector2(x, y);
-            connect(g.transform, oldPos, newPos);
-            oldPos=newPos;
 
-            if (myTarget.endPoint.x>myTarget.startPoint.x) {
-                oldPos.x+=(Mathf.Abs(Mathf.Cos(angle)*myTarget.spacing));
+                newPos=new Vector2(x, y);
+                connect(g.transform, oldPos, newPos);
+                oldPos=newPos;
+
+                if (myTarget.endPoint.x>myTarget.startPoint.x) {
+                    oldPos.x+=(Mathf.Abs(Mathf.Cos(angle)*myTarget.spacing));
+                }
+                else {
+
+                    oldPos.x-=(Mathf.Abs(Mathf.Cos(angle)*myTarget.spacing));
+                }
+                if (myTarget.endPoint.y>myTarget.startPoint.y) {
+                    oldPos.y+=(Mathf.Abs(Mathf.Sin(angle)*myTarget.spacing));
+                }
+                else {
+                    oldPos.y-=(Mathf.Abs(Mathf.Sin(angle)*myTarget.spacing));
+                }
+                
+            }
+            
+            
+            if (myTarget.hingeJointSetup) {
+                setupHinges();
+            }
+            if (myTarget.fixedEnds) {
+                objs [0].rigidbody2D.isKinematic=true;
+                objs [objs.Count-1].rigidbody2D.isKinematic=true;
             }
             else {
-
-                oldPos.x-=(Mathf.Abs(Mathf.Cos(angle)*myTarget.spacing));
-            }
-            if (myTarget.endPoint.y>myTarget.startPoint.y) {
-                oldPos.y+=(Mathf.Abs(Mathf.Sin(angle)*myTarget.spacing));
-            }
-            else {
-                oldPos.y-=(Mathf.Abs(Mathf.Sin(angle)*myTarget.spacing));
+                objs [0].rigidbody2D.isKinematic=false;
+                objs [objs.Count-1].rigidbody2D.isKinematic=false;
             }
         }
-        if (myTarget.hingeJointSetup) {
-            setupHinges();
+        catch(Exception e) {
+            Debug.Log(e);
         }
-        if (myTarget.fixedEnds) {
-            objs [0].rigidbody2D.isKinematic=true;
-            objs [objs.Count-1].rigidbody2D.isKinematic=true;
-        }
-        else {
-            objs [0].rigidbody2D.isKinematic=false;
-            objs [objs.Count-1].rigidbody2D.isKinematic=false;
-        }
+        
     }
     void removeExcess() {
         objs=new List<GameObject>();
@@ -461,7 +514,7 @@ public class ConnectViaDuplicationEditor : Editor {
         //setting the position to halfway between the beginning and the end
         obj.position=Vector3.Lerp(start, end, 0.5f);
         //getting the scale
-        if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber) {
+        if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber||myTarget.fillChoice==ConnectViaDuplication.fillOption.addExtra||myTarget.fillChoice==ConnectViaDuplication.fillOption.increaseSizeToFill) {
             float scale=Vector3.Distance(start, end);
             obj.transform.localScale=new Vector3(scale, obj.transform.localScale.y);
             if (scale<0) {

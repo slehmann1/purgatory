@@ -87,7 +87,7 @@
      <Compile Include="Assets\Scripts\destroyAfter.cs" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>F:/Desktop/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
