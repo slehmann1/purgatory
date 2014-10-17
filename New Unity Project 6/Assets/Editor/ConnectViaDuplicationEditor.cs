@@ -240,12 +240,17 @@ public class ConnectViaDuplicationEditor : Editor {
 						return myTarget.connector.GetComponent<BoxCollider2D> ().size.x;
 				} if (myTarget.connector.GetComponent<PolygonCollider2D> ()) {
 						Vector2 [] points = myTarget.connector.GetComponent<PolygonCollider2D> ().points;
-			Array.Sort (points,
-			            delegate(Vector2 x, Vector2 y) {
-				return (int)(x.x-y.y);
-			});
-			Debug.Log (points[0].x-points[points.Length].x);
-			return points[0].x-points[points.Length].x;
+                        float maxX = points[0].x;
+                        float minX=maxX;
+			foreach(Vector2 point in points){
+                if(point.x<minX){
+                    minX=point.x;
+                }
+                else if (point.x>maxX){
+                
+                }
+            }
+			return maxX-minX;
 
 				} else {
 			return myTarget.connector.renderer.bounds.extents.x;
@@ -415,7 +420,6 @@ public class ConnectViaDuplicationEditor : Editor {
                         }
                         break;
                 }
-                Debug.Log(gap);
             }
             if (myTarget.endPoint.x>myTarget.startPoint.x) {
                 x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
@@ -544,7 +548,6 @@ public class ConnectViaDuplicationEditor : Editor {
     }
     void setupHinges() {
         try {
-            Debug.Log("DONE");
             bool setDist=false;
             if (myTarget.connector.GetComponent<DistanceJoint2D>()) {
                 setDist=true;
