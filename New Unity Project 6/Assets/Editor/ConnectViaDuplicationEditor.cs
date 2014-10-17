@@ -160,11 +160,36 @@ public class ConnectViaDuplicationEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         myTarget.delChildren=EditorGUILayout.Toggle("Delete Children: ", myTarget.delChildren);
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
         myTarget.hingeJointSetup=EditorGUILayout.Toggle("Set up hinge joints: ", myTarget.hingeJointSetup);
         if (myTarget.hingeJointSetup) {
-            myTarget.collideWithConnected= EditorGUILayout.Toggle("Collide with hinge: ", myTarget.collideWithConnected);
+            myTarget.collideWithConnected=EditorGUILayout.Toggle("Collide with hinge: ", myTarget.collideWithConnected);
             if (myTarget.connector.GetComponent<DistanceJoint2D>()) {
-                myTarget.distanceJointDist=EditorGUILayout.FloatField("Distance: ", myTarget.distanceJointDist);
+                myTarget.jointDist=EditorGUILayout.FloatField("Distance: ", myTarget.jointDist);
+                if (myTarget.jointDist<0) {
+                    myTarget.jointDist=0;
+                }
+            }
+            if (myTarget.connector.GetComponent<SpringJoint2D>()) {
+                myTarget.jointDist=EditorGUILayout.FloatField("Distance: ", myTarget.jointDist);
+                myTarget.dampingRatio=EditorGUILayout.FloatField("Damping: ", myTarget.dampingRatio);
+                myTarget.frequency=EditorGUILayout.FloatField("Frequency: ", myTarget.frequency);
+                if (myTarget.dampingRatio>1) {
+                    myTarget.dampingRatio=1;
+                }
+                if (myTarget.dampingRatio<0) {
+                    myTarget.dampingRatio=0;
+                }
+                if (myTarget.jointDist<0) {
+                    myTarget.jointDist=0;
+                }
+                if(myTarget.frequency<0){
+                    myTarget.frequency=0;
+                }
+            }
+            if (GUILayout.Button("Refresh hinges")) {
+                setupHinges();
             }
         }
         myTarget.fixedEnds=EditorGUILayout.Toggle("Fix ends: ", myTarget.fixedEnds);
@@ -207,12 +232,12 @@ public class ConnectViaDuplicationEditor : Editor {
         }
 
     }
-    void numberChosenSetup() { 
+    void numberChosenSetup() {
 
-}
+    }
     void refresh() {
         try {
-            
+
             clearLog();
 
 
@@ -235,9 +260,9 @@ public class ConnectViaDuplicationEditor : Editor {
                     gap/=myTarget.number;
                     gap-=(myTarget.spacing);
                     if (myTarget.spacing!=0) {
-                         startGap=myTarget.spacing;
+                        startGap=myTarget.spacing;
                         //float startGap=0;
-                        
+
                         //gap+= (myTarget.connector.renderer.bounds.extents.x/2);
                         //myTarget.spacing = myTarget.spacing + gap;
 
@@ -266,7 +291,7 @@ public class ConnectViaDuplicationEditor : Editor {
                     removeExcess();
                 }
                 myTarget.number=(int)dist;
-                 startGap=0;
+                startGap=0;
 
                 switch (myTarget.fillChoice) {
                     case ConnectViaDuplication.fillOption.noGaps:
@@ -280,7 +305,7 @@ public class ConnectViaDuplicationEditor : Editor {
                 //myTarget.number--;
 
 
-               
+
             }
 
 
@@ -345,7 +370,7 @@ public class ConnectViaDuplicationEditor : Editor {
                                     gap/=myTarget.number;
                                     gap-=(myTarget.spacing);
                                     if (myTarget.spacing!=0) {
-                                         startGap=myTarget.spacing;
+                                        startGap=myTarget.spacing;
                                         Debug.Log(startGap);
                                         if (myTarget.endPoint.x>myTarget.startPoint.x) {
                                             x=oldPos.x+((Mathf.Cos(angle)*startGap/2));
@@ -444,10 +469,10 @@ public class ConnectViaDuplicationEditor : Editor {
                 else {
                     oldPos.y-=(Mathf.Abs(Mathf.Sin(angle)*myTarget.spacing));
                 }
-                
+
             }
-            
-            
+
+
             if (myTarget.hingeJointSetup) {
                 setupHinges();
             }
@@ -460,10 +485,10 @@ public class ConnectViaDuplicationEditor : Editor {
                 objs [objs.Count-1].rigidbody2D.isKinematic=false;
             }
         }
-        catch(Exception e) {
+        catch (Exception e) {
             Debug.Log(e);
         }
-        
+
     }
     void removeExcess() {
         objs=new List<GameObject>();
@@ -500,37 +525,64 @@ public class ConnectViaDuplicationEditor : Editor {
 
     }
     void setupHinges() {
-        bool setDist=false;
-        if (myTarget.connector.GetComponent<DistanceJoint2D>()) {
-            setDist=true;
-        }
-        if (!setDist) {
-            for (int i=0; i<objs.Count-1; i++) {
-                AnchoredJoint2D h=objs [i].GetComponent<AnchoredJoint2D>();
-                h.connectedBody=(objs [i+1].rigidbody2D);
-                if (myTarget.collideWithConnected) {
-                    h.collideConnected=true;
+        try {
+            Debug.Log("DONE");
+            bool setDist=false;
+            if (myTarget.connector.GetComponent<DistanceJoint2D>()) {
+                setDist=true;
+            }
+            if (!setDist) {
+                if (myTarget.connector.GetComponent<SpringJoint2D>()) {
+                    for (int i=0; i<objs.Count-1; i++) {
+                        SpringJoint2D h=objs [i].GetComponent<SpringJoint2D>();
+                        h.connectedBody=(objs [i+1].rigidbody2D);
+                        if (myTarget.collideWithConnected) {
+                            h.collideConnected=true;
+                        }
+                        else {
+                            h.collideConnected=false;
+                        }
+                        h.distance=myTarget.jointDist;
+                        h.dampingRatio=myTarget.dampingRatio;
+                        h.frequency=myTarget.frequency;
+                    }
                 }
                 else {
-                    h.collideConnected=false;
+                    for (int i=0; i<objs.Count-1; i++) {
+                        AnchoredJoint2D h=objs [i].GetComponent<AnchoredJoint2D>();
+                        h.connectedBody=(objs [i+1].rigidbody2D);
+                        if (myTarget.collideWithConnected) {
+                            h.collideConnected=true;
+                        }
+                        else {
+                            h.collideConnected=false;
+                        }
+                    }
                 }
             }
-        }
-        else {
-            for (int i=0; i<objs.Count-1; i++) {
-                DistanceJoint2D h=objs [i].GetComponent<DistanceJoint2D>();
-                h.connectedBody=(objs [i+1].rigidbody2D);
-                if (myTarget.collideWithConnected) {
-                    h.collideConnected=true;
+            else {
+                for (int i=0; i<objs.Count-1; i++) {
+                    DistanceJoint2D h=objs [i].GetComponent<DistanceJoint2D>();
+                    h.connectedBody=(objs [i+1].rigidbody2D);
+                    if (myTarget.collideWithConnected) {
+                        h.collideConnected=true;
+                    }
+                    else {
+                        h.collideConnected=false;
+                    }
+                    h.distance=myTarget.jointDist;
                 }
-                else {
-                    h.collideConnected=false;
-                }
-                h.distance=myTarget.distanceJointDist;
             }
+            if (myTarget.fixedEnds) {
+                objs [0].rigidbody2D.isKinematic=true;
+                objs [objs.Count-1].rigidbody2D.isKinematic=true;
+            }
+            objs [objs.Count-1].GetComponent<AnchoredJoint2D>().enabled=false;
+        }catch{//this means that objs is blank
+            refresh();
+            setupHinges();
+
         }
-        //objs[0].GetComponent<HingeJoint2D>().enabled=false;
-        objs [objs.Count-1].GetComponent<AnchoredJoint2D>().enabled=false;
     }
 
     void clearLog() {
