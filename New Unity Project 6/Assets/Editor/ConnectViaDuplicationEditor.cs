@@ -7,6 +7,7 @@ using System;
 [CustomEditor(typeof(ConnectViaDuplication))]
 [CanEditMultipleObjects]
 public class ConnectViaDuplicationEditor : Editor {
+    private Vector3 oldPos;
     private float oldAngle;
     private Handles startPoint, endPoint;
     private float gap, angle;
@@ -236,7 +237,12 @@ public class ConnectViaDuplicationEditor : Editor {
 
             createPool();
         }
-
+        if (oldPos!=myTarget.transform.position) {
+            Vector3 change=myTarget.transform.position-oldPos;
+            myTarget.endPoint+=change;
+            myTarget.startPoint+=change;
+            oldPos=myTarget.transform.position;
+        }
     }
     void numberChosenSetup() {
 
@@ -287,7 +293,6 @@ public class ConnectViaDuplicationEditor : Editor {
                     gap=0;
 
                 }
-
             }
             else {
                 float dist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
@@ -593,19 +598,19 @@ public class ConnectViaDuplicationEditor : Editor {
         //getting the scale
         if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber||myTarget.fillChoice==ConnectViaDuplication.fillOption.addExtra||myTarget.fillChoice==ConnectViaDuplication.fillOption.increaseSizeToFill) {
             originalScale=Vector3.Distance(start, end);
-            obj.transform.localScale=new Vector3(originalScale, obj.transform.localScale.y);
+            //originalScale*=myTarget.objScale;
+            Debug.Log(originalScale);
+            obj.transform.localScale=new Vector3(originalScale, originalScale);
             if (originalScale<0) {
                 Debug.LogWarning("The spacing is too high!");
             }
         }
-        obj.transform.localScale=new Vector3(originalScale*myTarget.objScale, originalScale*myTarget.objScale);
-        //Debug.Log(obj.lossyScale.x);
-        //trig
-        //float degrees = Mathf.Atan ((end.y - start.y) / (end.x - start.x));
-
-
-
-        obj.rotation=Quaternion.Euler(0, 0, angle*180/Mathf.PI);
+        else {
+            obj.transform.localScale=new Vector3(originalScale*myTarget.objScale, originalScale*myTarget.objScale);
+        }
+        
+       
+        obj.rotation=Quaternion.Euler(obj.rotation.eulerAngles.x, obj.rotation.eulerAngles.y, angle*180/Mathf.PI);
 
     }
 
