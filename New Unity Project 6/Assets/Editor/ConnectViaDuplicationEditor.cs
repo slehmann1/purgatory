@@ -14,7 +14,7 @@ public class ConnectViaDuplicationEditor : Editor {
     ConnectViaDuplication myTarget;
     int startAmount=5;
     private List<GameObject> objs;
-
+    private float originalScale=1f;
     void Start() {
         myTarget=(ConnectViaDuplication)target;
         createPool();
@@ -137,6 +137,12 @@ public class ConnectViaDuplicationEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         myTarget.connector=(GameObject)EditorGUILayout.ObjectField("Connector", myTarget.connector, typeof(GameObject), true);
+        float origScale=myTarget.objScale;
+        myTarget.objScale=Mathf.Abs(EditorGUILayout.FloatField("Scale: ", myTarget.objScale));
+        if (myTarget.objScale!=origScale) {
+            Debug.Log("TRUE");
+            changed=true;
+        }
         float spacing=myTarget.spacing;
         myTarget.spacing=Mathf.Abs(EditorGUILayout.FloatField("Spacing: ", myTarget.spacing));
         if (spacing!=myTarget.spacing) {
@@ -237,7 +243,7 @@ public class ConnectViaDuplicationEditor : Editor {
     }
 	float getWidth(){
 		if (myTarget.connector.GetComponent<BoxCollider2D> ()) {
-						return myTarget.connector.GetComponent<BoxCollider2D> ().size.x;
+						return myTarget.connector.GetComponent<BoxCollider2D> ().size.x*myTarget.objScale;
 				} if (myTarget.connector.GetComponent<PolygonCollider2D> ()) {
 						Vector2 [] points = myTarget.connector.GetComponent<PolygonCollider2D> ().points;
                         float maxX = points[0].x;
@@ -250,10 +256,10 @@ public class ConnectViaDuplicationEditor : Editor {
                 
                 }
             }
-			return maxX-minX;
+			return (maxX-minX)*myTarget.objScale;
 
 				} else {
-			return myTarget.connector.renderer.bounds.extents.x;
+			return myTarget.connector.renderer.bounds.extents.x*myTarget.objScale;
 				}
 	}
 
@@ -261,14 +267,6 @@ public class ConnectViaDuplicationEditor : Editor {
         try {
 
             clearLog();
-
-
-
-
-            //List<GameObject> children = new List<GameObject> ();
-            //	foreach (Transform child in myTarget.gameObject.transform)
-            //		children.Add (child.gameObject);
-            //children.ForEach (child => DestroyImmediate (child));
             float x=myTarget.startPoint.x, y=myTarget.startPoint.y;
             Vector3 newPos, oldPos;
             oldPos=myTarget.startPoint;
@@ -283,11 +281,6 @@ public class ConnectViaDuplicationEditor : Editor {
                     gap-=(myTarget.spacing);
                     if (myTarget.spacing!=0) {
                         startGap=myTarget.spacing;
-                        //float startGap=0;
-
-                        //gap+= (myTarget.connector.renderer.bounds.extents.x/2);
-                        //myTarget.spacing = myTarget.spacing + gap;
-
                     }
                 }
                 else {
@@ -300,15 +293,6 @@ public class ConnectViaDuplicationEditor : Editor {
                 float dist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
 
                 gap=myTarget.spacing+getWidth();
-
-                //	gap=Mathf.Cos (angle)*Mathf.Cos (angle);
-                //	gap+=(Mathf.Sin (angle)*Mathf.Sin (angle));
-                //		gap=Mathf.Pow(gap,0.5f);
-                //			gap*=myTarget.spacing;
-
-
-
-
                 dist/=gap;
                 if (dist!=myTarget.number) {
                     removeExcess();
@@ -325,15 +309,7 @@ public class ConnectViaDuplicationEditor : Editor {
                         break;
 
                 }
-                //myTarget.number--;
-
-
-
             }
-
-
-
-
 
             oldPos.x=x;
             oldPos.y=y;
@@ -344,8 +320,6 @@ public class ConnectViaDuplicationEditor : Editor {
                     case ConnectViaDuplication.fillOption.increaseSizeToFill:
                         if (differenceDist!=0) {
                             try {
-                                //	gap*=newScale;
-
                                 if (myTarget.number>1) {
                                     gap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
 
@@ -385,8 +359,6 @@ public class ConnectViaDuplicationEditor : Editor {
                         if (differenceDist!=0) {
                             try {
                                 myTarget.number+=1;
-                                //	gap*=newScale;
-
                                 if (myTarget.number>1) {
                                     gap=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
 
@@ -437,6 +409,7 @@ public class ConnectViaDuplicationEditor : Editor {
                 startAmount=myTarget.number;
                 createPool();
             }
+
             for (int i=1; i<=myTarget.number; i++) {
                 //trig to calculate the transform of the next gameObject
                 GameObject g;
@@ -619,12 +592,13 @@ public class ConnectViaDuplicationEditor : Editor {
         obj.position=Vector3.Lerp(start, end, 0.5f);
         //getting the scale
         if (myTarget.modeChoice==ConnectViaDuplication.mode.chooseNumber||myTarget.fillChoice==ConnectViaDuplication.fillOption.addExtra||myTarget.fillChoice==ConnectViaDuplication.fillOption.increaseSizeToFill) {
-            float scale=Vector3.Distance(start, end);
-            obj.transform.localScale=new Vector3(scale, obj.transform.localScale.y);
-            if (scale<0) {
+            originalScale=Vector3.Distance(start, end);
+            obj.transform.localScale=new Vector3(originalScale, obj.transform.localScale.y);
+            if (originalScale<0) {
                 Debug.LogWarning("The spacing is too high!");
             }
         }
+        obj.transform.localScale=new Vector3(originalScale*myTarget.objScale, originalScale*myTarget.objScale);
         //Debug.Log(obj.lossyScale.x);
         //trig
         //float degrees = Mathf.Atan ((end.y - start.y) / (end.x - start.x));

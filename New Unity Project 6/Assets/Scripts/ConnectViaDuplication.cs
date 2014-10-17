@@ -7,6 +7,7 @@ public class ConnectViaDuplication : MonoBehaviour {
 	public int number;
 	public bool delChildren;
     public float jointDist,dampingRatio,frequency;
+    public float objScale=1;
 	public bool hingeJointSetup,collideWithConnected, chooseNumber,fixedEnds;
 	public enum mode{chooseNumber, chooseSpacing};
     public mode modeChoice;
