@@ -161,6 +161,12 @@ public class ConnectViaDuplicationEditor : Editor {
         EditorGUILayout.Space();
         myTarget.delChildren=EditorGUILayout.Toggle("Delete Children: ", myTarget.delChildren);
         myTarget.hingeJointSetup=EditorGUILayout.Toggle("Set up hinge joints: ", myTarget.hingeJointSetup);
+        if (myTarget.hingeJointSetup) {
+            myTarget.collideWithConnected= EditorGUILayout.Toggle("Collide with hinge: ", myTarget.collideWithConnected);
+            if (myTarget.connector.GetComponent<DistanceJoint2D>()) {
+                myTarget.distanceJointDist=EditorGUILayout.FloatField("Distance: ", myTarget.distanceJointDist);
+            }
+        }
         myTarget.fixedEnds=EditorGUILayout.Toggle("Fix ends: ", myTarget.fixedEnds);
         EditorGUILayout.Space();
         EditorGUILayout.Space();
@@ -176,8 +182,8 @@ public class ConnectViaDuplicationEditor : Editor {
         }
         else {
             if (GUILayout.Button("Refresh")) {
-
                 refresh();
+                createPool();
             }
 
 
@@ -494,12 +500,37 @@ public class ConnectViaDuplicationEditor : Editor {
 
     }
     void setupHinges() {
-        for (int i=0; i<objs.Count-1; i++) {
-            HingeJoint2D h=objs [i].GetComponent<HingeJoint2D>();
-            h.connectedBody=(objs [i+1].rigidbody2D);
+        bool setDist=false;
+        if (myTarget.connector.GetComponent<DistanceJoint2D>()) {
+            setDist=true;
+        }
+        if (!setDist) {
+            for (int i=0; i<objs.Count-1; i++) {
+                AnchoredJoint2D h=objs [i].GetComponent<AnchoredJoint2D>();
+                h.connectedBody=(objs [i+1].rigidbody2D);
+                if (myTarget.collideWithConnected) {
+                    h.collideConnected=true;
+                }
+                else {
+                    h.collideConnected=false;
+                }
+            }
+        }
+        else {
+            for (int i=0; i<objs.Count-1; i++) {
+                DistanceJoint2D h=objs [i].GetComponent<DistanceJoint2D>();
+                h.connectedBody=(objs [i+1].rigidbody2D);
+                if (myTarget.collideWithConnected) {
+                    h.collideConnected=true;
+                }
+                else {
+                    h.collideConnected=false;
+                }
+                h.distance=myTarget.distanceJointDist;
+            }
         }
         //objs[0].GetComponent<HingeJoint2D>().enabled=false;
-        objs [objs.Count-1].GetComponent<HingeJoint2D>().enabled=false;
+        objs [objs.Count-1].GetComponent<AnchoredJoint2D>().enabled=false;
     }
 
     void clearLog() {

@@ -6,7 +6,8 @@ public class ConnectViaDuplication : MonoBehaviour {
 	public float scale,spacing;
 	public int number;
 	public bool delChildren;
-	public bool hingeJointSetup, chooseNumber,fixedEnds;
+    public float distanceJointDist;
+	public bool hingeJointSetup,collideWithConnected, chooseNumber,fixedEnds;
 	public enum mode{chooseNumber, chooseSpacing};
     public mode modeChoice;
     public enum fillOption {increaseSizeToFill,addExtra,noGaps,spaceEvenly};
