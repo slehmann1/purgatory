@@ -235,6 +235,23 @@ public class ConnectViaDuplicationEditor : Editor {
     void numberChosenSetup() {
 
     }
+	float getWidth(){
+		if (myTarget.connector.GetComponent<BoxCollider2D> ()) {
+						return myTarget.connector.GetComponent<BoxCollider2D> ().size.x;
+				} if (myTarget.connector.GetComponent<PolygonCollider2D> ()) {
+						Vector2 [] points = myTarget.connector.GetComponent<PolygonCollider2D> ().points;
+			Array.Sort (points,
+			            delegate(Vector2 x, Vector2 y) {
+				return (int)(x.x-y.y);
+			});
+			Debug.Log (points[0].x-points[points.Length].x);
+			return points[0].x-points[points.Length].x;
+
+				} else {
+			return myTarget.connector.renderer.bounds.extents.x;
+				}
+	}
+
     void refresh() {
         try {
 
@@ -277,7 +294,8 @@ public class ConnectViaDuplicationEditor : Editor {
             else {
                 float dist=Vector3.Distance(myTarget.startPoint, myTarget.endPoint);
 
-                gap=myTarget.spacing+myTarget.connector.GetComponent<BoxCollider2D>().size.x;
+                gap=myTarget.spacing+getWidth();
+
                 //	gap=Mathf.Cos (angle)*Mathf.Cos (angle);
                 //	gap+=(Mathf.Sin (angle)*Mathf.Sin (angle));
                 //		gap=Mathf.Pow(gap,0.5f);
