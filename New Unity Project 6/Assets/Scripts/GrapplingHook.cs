@@ -88,9 +88,12 @@ public class GrapplingHook : MonoBehaviour {
                 if (blockTouched) {//it is a possibility that there is no block within the circle
                     ignoreLimits=false;
                     //if the player is beyond the horizontal edge of the block
-                    if (Physics2D.Raycast(transform.position, Vector3.down, range, 1<<LayerMask.NameToLayer("level")).transform.gameObject!=blockTouched) {
-                        ignoreLimits=true;
+                    try {
+                        if (Physics2D.Raycast(transform.position, Vector3.down, range, 1<<LayerMask.NameToLayer("level")).transform.gameObject!=blockTouched) {
+                            ignoreLimits=true;
+                        }
                     }
+                    catch { }
                 }
             }
             
