@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 public class GrapplingEnd : MonoBehaviour {
+	private Rigidbody2D rig;
     private GameObject stem,connectedObj;
     private BoxCollider2D coll;
     private bool active;
     private Vector2 position;
     private Quaternion rot, initRot;
     private bool contacted;
-    private DistanceJoint2D dist;
+	private DistanceJoint2D dist,objConnection;
+	private const  float connectedObjectDistance=0.01f;
     private ParticleSystem parts;
     public bool rotationEnabled;
     public void setRange(float range) {
@@ -25,7 +27,8 @@ public class GrapplingEnd : MonoBehaviour {
     }
 
     public void Spawn() {
-        rigidbody2D.isKinematic=false;
+		rig = rigidbody2D;
+        rig.isKinematic=false;
         transform.parent=stem.transform.parent.transform.parent;
         coll.enabled=true;
         renderer.enabled=true;
@@ -35,7 +38,7 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=true;
         transform.rotation=initRot;
         parts.enableEmission=true;
-    }
+		}
     public void deactivate() {
         try {
             coll.enabled=false;
@@ -43,6 +46,7 @@ public class GrapplingEnd : MonoBehaviour {
             active=false;
             dist.enabled=false;
             parts.enableEmission=false;
+			objConnection.enabled=false;
         }
         catch {
             
@@ -63,6 +67,8 @@ public class GrapplingEnd : MonoBehaviour {
     void Start() {
         coll=GetComponent<BoxCollider2D>();
         coll.enabled=false;
+		objConnection =  gameObject.AddComponent<DistanceJoint2D>();
+		objConnection.enabled = false;
         deactivate();
     }
     void UpdatePos() {
@@ -79,8 +85,19 @@ public class GrapplingEnd : MonoBehaviour {
     public GameObject getConnectedObject() {
         return connectedObj;
     }
+	void attachToObj(){
+		try{
+		objConnection.connectedBody = connectedObj.rigidbody2D;
+		objConnection.connectedAnchor = connectedObj.transform.InverseTransformPoint (transform.position);
+			rig.isKinematic=false; 
+		}catch{
+			objConnection.connectedAnchor = transform.position;
+				}
+		objConnection.distance = connectedObjectDistance;
+		objConnection.enabled = true;
+		}
     void OnCollisionEnter2D(Collision2D collision) {
-        if (active) {
+        if (active&&!contacted) {
             if (rotationEnabled) {
                 float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
                 rotation*=180;
@@ -97,6 +114,7 @@ public class GrapplingEnd : MonoBehaviour {
 
             contacted=true;
             connectedObj=collision.gameObject;
+			attachToObj();
         }
     }
     // Update is called once per frame
