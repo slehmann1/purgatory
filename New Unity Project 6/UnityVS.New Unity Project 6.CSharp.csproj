@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AntennaSetup.cs" />
     <Compile Include="Assets\Scripts\BlockSpawner.cs" />
+    <Compile Include="Assets\Scripts\ButtonComboBase.cs" />
     <Compile Include="Assets\Scripts\Camera_Tracker.cs" />
     <Compile Include="Assets\Scripts\CannonBehaviour.cs" />
     <Compile Include="Assets\Scripts\CarBehaviour.cs" />
