@@ -4,16 +4,16 @@ using System.Collections;
 public abstract class ButtonComboBase : MonoBehaviour {
 
     public KeyCode [] combo;
-    public bool repeatable;
+    protected bool repeatable=true;
     private int currentPosition=0;
 
     void Start() {
         currentPosition=0;
     }
-    public void activate() {
+    public virtual void activate() {
         Debug.Log("THAT COMBO WAS PRESSED");
     }
-	void Update () {
+	protected void Update () {
         if (Input.anyKey&&Input.inputString!="") {
                 if (Input.inputString==combo [currentPosition].ToString().ToLower()) {
                     currentPosition++;
