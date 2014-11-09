@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 public class CarSpawner : MonoBehaviour
 {
-		public float minTime, maxTime, startingSpeed, startingForce;
+		public float minTime, maxTime, startingSpeed, startingForce,wheelMargin;
+        public bool updateCarSpawnerHeight, automaticallySetSpawnHeight;
+        private float spawnHeight;
 		public Vehicle[] vehicles;
 		[System.Serializable]
 		public class Vehicle
@@ -25,10 +27,16 @@ public class CarSpawner : MonoBehaviour
 				} else {
 						Debug.LogError ("Probabilites do not add up to one hundred!");
 				}
+            
+                spawnHeight=Physics2D.Raycast(transform.position,Vector3.down).point.y;
+            
 		}
 		// Update is called once per frame
 		void Spawn ()
 		{
+            if (updateCarSpawnerHeight&&automaticallySetSpawnHeight) {
+                spawnHeight=Physics2D.Raycast(transform.position, Vector3.down).point.y;
+            }
 				CancelInvoke ();
 				GameObject g = vehicles [0].vehicle;
 				float f = UnityEngine.Random.Range (0, 100);
@@ -40,7 +48,13 @@ public class CarSpawner : MonoBehaviour
 								break;
 						}
 				}
-				g = (GameObject)Instantiate (g, transform.position, Quaternion.identity);
+                if (automaticallySetSpawnHeight) {
+                    g=(GameObject)Instantiate(g, new Vector2(transform.position.x, spawnHeight-g.transform.FindChild("RearWheel").transform.localPosition.y+wheelMargin), Quaternion.identity);
+                    Debug.Log(g.transform.FindChild("RearWheel").collider2D.bounds.extents);
+                }
+                else {
+                    g=(GameObject)Instantiate(g, transform.position, Quaternion.identity);
+                }
 		g.GetComponent<Collider2D>().enabled=false;
 				g.transform.parent = transform;
 		g.GetComponent<Collider2D>().enabled=true;
