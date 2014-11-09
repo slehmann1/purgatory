@@ -10,11 +10,12 @@ public class GrapplingHook : MonoBehaviour {
     public float changeSpeed;
 	public float limit;
     Vector2 target, oldTarget;
-    public GameObject obj,end;
+    public GameObject obj;
     private GameObject player;
     private RaycastHit2D targetCast;
     private bool hasHitObj;
     bool forwards, grappling;
+    public GameObject end;
     private GrapplingEnd endScript;
     private GrapplingStalk objMid;
     private Player_Movement pMov;
