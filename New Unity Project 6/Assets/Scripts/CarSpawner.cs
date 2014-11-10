@@ -55,6 +55,7 @@ public class CarSpawner : MonoBehaviour
                 else {
                     g=(GameObject)Instantiate(g, transform.position, Quaternion.identity);
                 }
+                g.layer=gameObject.layer;
 		g.GetComponent<Collider2D>().enabled=false;
 				g.transform.parent = transform;
 		g.GetComponent<Collider2D>().enabled=true;

@@ -74,6 +74,7 @@ public class SnapWithPlayer : MonoBehaviour
 						}
 						g.transform.localPosition = g.transform.position;
 						g.transform.localScale = g.transform.lossyScale;
+                        g.layer=gameObject.layer;
 				}
 				Component [] comps = GetComponents<Component> ();
 				for (int i =0; i<comps.Length; i++) {
@@ -90,6 +91,7 @@ public class SnapWithPlayer : MonoBehaviour
 		if (smokeEffect != null) {
 						g = (GameObject)GameObject.Instantiate (smokeEffect);
 						g.transform.parent = transform;
+                        g.layer=gameObject.layer;
 				}
 				if (makeChild) {
 						Destroy (this);
