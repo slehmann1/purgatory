@@ -87,9 +87,14 @@ public class GrapplingEnd : MonoBehaviour {
     }
 	void attachToObj(){
 		try{
-		objConnection.connectedBody = connectedObj.rigidbody2D;
-		objConnection.connectedAnchor = connectedObj.transform.InverseTransformPoint (transform.position);
-			rig.isKinematic=false; 
+            if (connectedObj.rigidbody2D) {
+                objConnection.connectedBody=connectedObj.rigidbody2D;
+                objConnection.connectedAnchor=connectedObj.transform.InverseTransformPoint(transform.position);
+                rig.isKinematic=false;
+            }
+            else {
+                objConnection.connectedAnchor=transform.position;
+            }
 		}catch{
 			objConnection.connectedAnchor = transform.position;
 				}
