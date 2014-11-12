@@ -19,7 +19,11 @@ public class saveManager : MonoBehaviour {
             Directory.CreateDirectory(Application.persistentDataPath+"/saves");//create the folder
         }
     }
-
+    public void loadGame(int i) {
+        checkForGames();
+        Debug.Log("Save: "+files[i]+" loaded");
+        Application.LoadLevel(1);
+    }
     public void create(string s) {
         if (s=="") {
             throw new Exception("Empty file name exception");
