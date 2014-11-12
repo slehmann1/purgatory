@@ -5,10 +5,12 @@ using System.IO;
 public class loadGameSetup : MonoBehaviour {
     public Text [] saves;
     void Start() {
+		try{
         string [] fileNames=Directory.GetFiles(Application.persistentDataPath+"/saves/");
         for (int i=0; i<fileNames.Length; i++ ) {
             fileNames[i]=fileNames [i].Replace(Application.persistentDataPath+"/saves/", "");
-            fileNames[i]=fileNames [i].TrimEnd(".save".ToCharArray());
+            fileNames[i]=fileNames [i].Substring(0,fileNames[i].LastIndexOf(".save"));
+				Debug.Log (fileNames[i]);
             saves [i].text=fileNames [i];
         }
         int x=fileNames.Length;
@@ -16,5 +18,9 @@ public class loadGameSetup : MonoBehaviour {
             saves [x].transform.parent.gameObject.SetActive(false);
             x++;
         }
+		}catch (DirectoryNotFoundException){
+			Directory.CreateDirectory(Application.persistentDataPath+"/saves");//create the folder
+			Start();
     }
+}
 }
