@@ -89,6 +89,8 @@
      <Compile Include="Assets\Scripts\WaypointedPath.cs" />
      <Compile Include="Assets\Scripts\anchoredJoint2DConnectedAnchorSetter.cs" />
      <Compile Include="Assets\Scripts\destroyAfter.cs" />
+     <Compile Include="Assets\Scripts\playerSave.cs" />
+     <Compile Include="Assets\Scripts\saveManager.cs" />
      <Compile Include="Assets\Scripts\speedChangeEasterEgg.cs" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
