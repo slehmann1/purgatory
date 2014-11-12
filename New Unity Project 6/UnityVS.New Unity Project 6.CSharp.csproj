@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\TiltVelocityLimiter.cs" />
     <Compile Include="Assets\Scripts\UI\antiAliasingText.cs" />
+    <Compile Include="Assets\Scripts\UI\deleteSave.cs" />
     <Compile Include="Assets\Scripts\UI\settingsSaver.cs" />
     <Compile Include="Assets\Scripts\UI\textAppender.cs" />
     <Compile Include="Assets\Scripts\Update.cs" />

@@ -8,14 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class settingsSaver : MonoBehaviour {
     public Slider musicVolume, masterVolume, specialEffectsVolume, antiAliasing, frameCap;
     public Toggle vSync, fullscreen, fourByThreeToggle, fiveByFourToggle, sixteenByTenToggle, sixteenByNineToggle, customWindowToggle;
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
+  
     public void save() {
         Debug.Log(Application.persistentDataPath+"/settings.whyareyoulookingatthis");
         BinaryFormatter bf=new BinaryFormatter();
