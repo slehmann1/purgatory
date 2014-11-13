@@ -83,6 +83,7 @@
      <Compile Include="Assets\Scripts\TiltVelocityLimiter.cs" />
      <Compile Include="Assets\Scripts\UI\antiAliasingText.cs" />
      <Compile Include="Assets\Scripts\UI\deleteSave.cs" />
+     <Compile Include="Assets\Scripts\UI\exit.cs" />
      <Compile Include="Assets\Scripts\UI\loadGameSetup.cs" />
      <Compile Include="Assets\Scripts\UI\settingsSaver.cs" />
      <Compile Include="Assets\Scripts\UI\textAppender.cs" />
@@ -92,6 +93,7 @@
      <Compile Include="Assets\Scripts\anchoredJoint2DConnectedAnchorSetter.cs" />
      <Compile Include="Assets\Scripts\destroyAfter.cs" />
      <Compile Include="Assets\Scripts\playerSave.cs" />
+     <Compile Include="Assets\Scripts\rotator.cs" />
      <Compile Include="Assets\Scripts\saveManager.cs" />
      <Compile Include="Assets\Scripts\speedChangeEasterEgg.cs" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />

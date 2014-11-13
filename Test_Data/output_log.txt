@@ -1,4 +1,4 @@
-Initialize engine version: 4.5.2f1 (9abb1b59b47c)
+Initialize engine version: 4.6.0f1 (8b19a19f0c27)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 9.0c [igdumdim32.dll 10.18.10.3621]
@@ -13,7 +13,11 @@ Platform assembly: C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\Assembl
 Loading C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.062 seconds
+Platform assembly: C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.071 seconds
 desktop: 1600x900 60Hz; virtual: 3520x1762 at -1920,-862
 <RI> Initializing input.
 <RI> Input initialized.
+Platform assembly: C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Samuel\Documents\purgatory\Test_Data\Managed\System.dll (this message is harmless)
