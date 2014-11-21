@@ -19,7 +19,6 @@ public class GrapplingEnd : MonoBehaviour {
     /// spawns without updating the rotation
     /// </summary>
     public void updateLength() {
-        Debug.Log("RUN");
         coll.enabled=true;
         renderer.enabled=true;
         active=true;
@@ -42,7 +41,6 @@ public class GrapplingEnd : MonoBehaviour {
         
 		}
     public void deactivate() {
-        Debug.Log("RUN");
         try {
             //coll.enabled=false;
             renderer.enabled=false;

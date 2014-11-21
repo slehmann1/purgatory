@@ -135,6 +135,7 @@ public class GrapplingHook : MonoBehaviour {
     /// <param name="start"></param>
     /// <param name="end"></param>
     void connect(Transform obj, Vector3 start, Vector3 end) {
+
         //this is where the math starts
         //setting the position to halfway between the beginning and the end
         obj.position=Vector3.Lerp(start, end, 0.5f);
@@ -190,7 +191,7 @@ public class GrapplingHook : MonoBehaviour {
                     oldTarget=targetCast.point;
                     hasHitObj=true;
                     target=oldTarget;
-                    removeLine();
+                    //removeLine();
                     grapple();
                 }
             }
@@ -198,9 +199,6 @@ public class GrapplingHook : MonoBehaviour {
         if (Input.GetAxis ("Change_Grappling_Hook_Length") != 0 && grappling) {
 
                 if (checkLimits()) {
-
-
-                    
                     Debug.DrawLine(transform.position, end.transform.position, Color.red, 5f, false);
                     if (hasHitObj) {
                         if (Input.GetAxis("Change_Grappling_Hook_Length")>0) {
@@ -357,7 +355,7 @@ public class GrapplingHook : MonoBehaviour {
                 if (Vector2.Distance(player.transform.position-newVec, end.transform.position)>=minimumDistance)
                     player.transform.position-=(newVec);
             }
-            removeLine();
+           
             try {
                 angle=getAngle(target,transform.position);
                 connect(obj.transform, transform.position, target);
