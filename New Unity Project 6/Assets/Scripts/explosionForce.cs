@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[RequireComponent(typeof(CircleCollider2D))]
 public class explosionForce : MonoBehaviour {
+
 	public float range;
 	private float slope;
 	public float maxForce;

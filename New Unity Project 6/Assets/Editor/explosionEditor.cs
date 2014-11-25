@@ -6,16 +6,29 @@ using System.Collections.Generic;
 
 public class explosionEditor : Editor {
 	private explosionForce obj;
+	private float oldRange = 0;
+	private Color c;
 	void Start(){
-		Debug.Log ("RUN");
 		obj = (explosionForce)target;
+		c = Color.red;
+		c.a = 0.05f;
 		}
 	void OnSceneGUI() {
-		obj = (explosionForce)target; 
+		if (obj == null) {
+			Start ();
+				}
 		if (obj.range < 0) {
 						obj.range = 0;
 				}
+
+		if (obj.range != oldRange) {
+						obj.GetComponent<CircleCollider2D> ().radius = obj.range;
+				}
+
+		Handles.color = c;
+
 		Handles.DrawSolidDisc (obj.transform.position,  new Vector3(0, 0, 1), obj.range); 	
+		oldRange = obj.range;
 
 }
 }	
