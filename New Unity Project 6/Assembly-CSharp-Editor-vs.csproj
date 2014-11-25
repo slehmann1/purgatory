@@ -54,6 +54,7 @@
      <Compile Include="Assets\Editor\RemoveInternalShapes.cs" />
      <Compile Include="Assets\Editor\UnityLock\UnityLock.cs" />
      <Compile Include="Assets\Editor\UsedAssets.cs" />
+     <Compile Include="Assets\Editor\explosionEditor.cs" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>F:/Desktop/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

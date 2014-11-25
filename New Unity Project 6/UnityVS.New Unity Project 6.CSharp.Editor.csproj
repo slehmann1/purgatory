@@ -83,6 +83,7 @@
     <Compile Include="Assets\Editor\RemoveInternalShapes.cs" />
     <Compile Include="Assets\Editor\UnityLock\UnityLock.cs" />
     <Compile Include="Assets\Editor\UsedAssets.cs" />
+    <Compile Include="Assets\Editor\explosionEditor.cs" />
     <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
     <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll" />
     <None Include="Assets\UnityVS\Editor\SyntaxTree.VisualStudio.Unity.Messaging.dll" />
