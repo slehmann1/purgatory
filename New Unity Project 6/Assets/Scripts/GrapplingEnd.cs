@@ -38,7 +38,7 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=true;
         transform.rotation=initRot;
         parts.enableEmission=true;
-        
+        collider2D.enabled=true;
 		}
     public void deactivate() {
         try {
@@ -101,6 +101,7 @@ public class GrapplingEnd : MonoBehaviour {
 				}
 		objConnection.distance = connectedObjectDistance;
 		objConnection.enabled = true;
+        collider2D.enabled=false;
 		}
     void OnCollisionEnter2D(Collision2D collision) {
         if (active&&!contacted) {
