@@ -12,16 +12,21 @@ public class explosionForce : MonoBehaviour
 
     public void Explode()
     {
-        Debug.Log("RUN");
+   
         foreach(Rigidbody2D rigBody in currentlyColliding){
             rigBody.AddForce(getForce(rigBody));
         }
     }
     private Vector2 getForce(Rigidbody2D rigBody)
     {
-        float xForce = getForce(rigBody.transform.position.x- transform.position.x);
-        float divisor = (rigBody.transform.position.x- transform.position.x)/xForce;//uses similar triangles, could alternatively use trig, but this is likely faster
-        return new Vector2(xForce,(getForce(rigBody.transform.position.y- transform.position.y)/divisor));
+		float force = (getForce (Vector2.Distance (transform.position, rigBody.transform.position)));
+		float angle = Vector2.Angle (transform.position,rigBody.transform.position);
+		float xForce =Mathf.Cos (angle) * force;
+		float yForce =Mathf.Sin (angle)*force;
+		Debug.DrawRay (rigBody.transform.position,new Vector3(xForce,yForce,0),Color.cyan,5f,false);
+		Debug.Log (new Vector2(xForce,yForce)+"|"+angle);
+		return new Vector2(xForce,yForce).normalized;
+
     }
 
     void Update()
@@ -63,6 +68,12 @@ public class explosionForce : MonoBehaviour
     }
     float getForce(float distance)
     {
-        return distance * slope + maxForce;//f(x) = (-maxforce/maxrange)(x)+maxforce, (-maxforce/maxrange) = slope
+		//f(x)=(b/(log(-(0-a+1))))(log(-(x-(a+1)))) where a is the x intercept and b is the y intercept. 
+		//thus a is the maximum range and b is the maximum force
+		//it is 0 in the first section because that is the value of x at the y intercept
+		//x is the distance
+
+		return  maxForce / (Mathf.Log10 (-(-range + 1)))*Mathf.Log10 (-(distance-(range)));
+        //return distance * slope + maxForce;//f(x) = (-maxforce/maxrange)(x)+maxforce, (-maxforce/maxrange) = slope
     }
 }
