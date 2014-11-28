@@ -14,18 +14,19 @@ public class explosionForce : MonoBehaviour
     {
    
         foreach(Rigidbody2D rigBody in currentlyColliding){
-            rigBody.AddForce(getForce(rigBody));
+            addForce(rigBody);
         }
     }
-    private Vector2 getForce(Rigidbody2D rigBody)
+    private void addForce(Rigidbody2D rigBody)
     {
-		float force = (getForce (Vector2.Distance (transform.position, rigBody.transform.position)));
+		RaycastHit2D rh = Physics2D.Linecast (transform.position, rigBody.transform.position);
+		float force = (addForce (rh.distance));
 		float angle = Vector2.Angle (transform.position,rigBody.transform.position);
-		float xForce =Mathf.Cos (angle) * force;
-		float yForce =Mathf.Sin (angle)*force;
-		Debug.DrawRay (rigBody.transform.position,new Vector3(xForce,yForce,0),Color.cyan,5f,false);
-		Debug.Log (new Vector2(xForce,yForce)+"|"+angle);
-		return new Vector2(xForce,yForce).normalized;
+		Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
+		Vector2 forceVector = q * (maxForce*Vector3.right);
+		Debug.DrawRay (rigBody.transform.position,forceVector.normalized,Color.cyan,5f,false);
+		Debug.Log ( forceVector+"|"+angle);
+		rigBody.AddForceAtPosition (forceVector,rh.point);
 
     }
 
@@ -66,7 +67,7 @@ public class explosionForce : MonoBehaviour
         //thus maxforce is the yintercept and maxrange is the x intercept
         slope = -maxForce / range;//slope = rise over run
     }
-    float getForce(float distance)
+    float addForce(float distance)
     {
 		//f(x)=(b/(log(-(0-a+1))))(log(-(x-(a+1)))) where a is the x intercept and b is the y intercept. 
 		//thus a is the maximum range and b is the maximum force
