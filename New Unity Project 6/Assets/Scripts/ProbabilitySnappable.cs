@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ProbabilitySnappable : Snappable {
 
-    public GameObject smokeEffect;
+
     public definiteSpawn[] definitelySpawns;
     public bool destroyChildren;
     public bool makeChild;
@@ -38,8 +38,9 @@ public class ProbabilitySnappable : Snappable {
         }
     }
 
-    public override void destroy()
+    public void destroy()
     {
+        showParticles();
         CancelInvoke();
         GameObject g;
         if (destroyChildren)
@@ -92,12 +93,6 @@ public class ProbabilitySnappable : Snappable {
         if (transform.parent != null && transform.parent.GetComponent<ChildDistanceJointSetup>())
         {
             transform.parent.GetComponent<ChildDistanceJointSetup>().act();
-        }
-        if (smokeEffect != null)
-        {
-            g = (GameObject)GameObject.Instantiate(smokeEffect);
-            g.transform.parent = transform;
-            g.layer = gameObject.layer;
         }
         if (makeChild)
         {
