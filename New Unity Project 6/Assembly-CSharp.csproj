@@ -75,10 +75,12 @@
      <Compile Include="Assets\Scripts\NonLoopingScrollScript.cs" />
      <Compile Include="Assets\Scripts\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\Player_Movement.cs" />
+     <Compile Include="Assets\Scripts\ProbabilitySnappable.cs" />
      <Compile Include="Assets\Scripts\RedFlash.cs" />
      <Compile Include="Assets\Scripts\SavePointScript.cs" />
      <Compile Include="Assets\Scripts\ScrollScript.cs" />
      <Compile Include="Assets\Scripts\SnapWithPlayer.cs" />
+     <Compile Include="Assets\Scripts\Snappable.cs" />
      <Compile Include="Assets\Scripts\SpawnEffect.cs" />
      <Compile Include="Assets\Scripts\TiltVelocityLimiter.cs" />
      <Compile Include="Assets\Scripts\UI\antiAliasingText.cs" />

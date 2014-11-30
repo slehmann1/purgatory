@@ -75,10 +75,12 @@
      <Compile Include="Assets\Scripts\NonLoopingScrollScript.cs" />
      <Compile Include="Assets\Scripts\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\Player_Movement.cs" />
+     <Compile Include="Assets\Scripts\ProbabilitySnappable.cs" />
      <Compile Include="Assets\Scripts\RedFlash.cs" />
      <Compile Include="Assets\Scripts\SavePointScript.cs" />
      <Compile Include="Assets\Scripts\ScrollScript.cs" />
      <Compile Include="Assets\Scripts\SnapWithPlayer.cs" />
+     <Compile Include="Assets\Scripts\Snappable.cs" />
      <Compile Include="Assets\Scripts\SpawnEffect.cs" />
      <Compile Include="Assets\Scripts\TiltVelocityLimiter.cs" />
      <Compile Include="Assets\Scripts\UI\antiAliasingText.cs" />
@@ -99,7 +101,7 @@
      <Compile Include="Assets\Scripts\speedChangeEasterEgg.cs" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>F:/Desktop/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

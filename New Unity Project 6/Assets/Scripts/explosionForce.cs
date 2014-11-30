@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 [RequireComponent(typeof(CircleCollider2D))]
 public class explosionForce : MonoBehaviour
@@ -17,16 +18,55 @@ public class explosionForce : MonoBehaviour
             addForce(rigBody);
         }
     }
+    private float getAngle(Vector2 point1, Vector2 point2)
+    {
+        float ang = Mathf.Atan(Mathf.Abs((point1.y - point2.y) / (point1.x - point2.x)));
+        if (float.IsNaN(ang))
+        {
+            throw new Exception("The difference between the points to connect is too low. (floating point precision issue)");
+        }
+        if (point1.x > point2.x)
+        {
+            if (point1.y > point2.y)
+            {
+                //quad 1
+            }
+            else
+            {
+                //quad 4
+                ang = (Mathf.PI) - ang + (Mathf.PI);
+            }
+        }
+        else
+        {
+            if (point1.y > point2.y)
+            {
+                //quad 2
+                ang = (Mathf.PI / 2) - ang + (Mathf.PI / 2);
+            }
+            else
+            {
+                //quad 3
+                ang = Mathf.PI + ang;
+            }
+        }
+        return ang;
+    }
     private void addForce(Rigidbody2D rigBody)
     {
 		RaycastHit2D rh = Physics2D.Linecast (transform.position, rigBody.transform.position);
 		float force = (addForce (rh.distance));
-		float angle = Vector2.Angle (transform.position,rigBody.transform.position);
-		Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-		Vector2 forceVector = q * (maxForce*Vector3.right);
+        float angle = getAngle(transform.position,rigBody.transform.position);
+        Vector2 forceVector = new Vector2(-Mathf.Cos(angle),-Mathf.Sin(angle));
+        forceVector *= force;
 		Debug.DrawRay (rigBody.transform.position,forceVector.normalized,Color.cyan,5f,false);
-		Debug.Log ( forceVector+"|"+angle);
 		rigBody.AddForceAtPosition (forceVector,rh.point);
+        if(rigBody.GetComponent<Snappable>()){
+            if (rigBody.GetComponent<Snappable>().snapOnExplode)
+            {
+                rigBody.GetComponent<Snappable>().destroy();
+            }
+        }
 
     }
 

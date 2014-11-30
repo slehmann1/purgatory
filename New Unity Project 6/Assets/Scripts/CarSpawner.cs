@@ -50,7 +50,6 @@ public class CarSpawner : MonoBehaviour
 				}
                 if (automaticallySetSpawnHeight) {
                     g=(GameObject)Instantiate(g, new Vector2(transform.position.x, spawnHeight-g.transform.FindChild("RearWheel").transform.localPosition.y+wheelMargin), Quaternion.identity);
-                    Debug.Log(g.transform.FindChild("RearWheel").collider2D.bounds.extents);
                 }
                 else {
                     g=(GameObject)Instantiate(g, transform.position, Quaternion.identity);
