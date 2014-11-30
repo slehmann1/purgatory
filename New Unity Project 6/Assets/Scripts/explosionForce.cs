@@ -5,18 +5,40 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CircleCollider2D))]
 public class explosionForce : MonoBehaviour
 {
-
+    [Tooltip("whether or not it will explode when another explsion applies a force on it")]
+    public bool explodeWithExplosion=true;
+    [Tooltip("the delay before it explodes from another explosion")]
+    public float delayOfExplosionTransfer=0.5f;
+    [Tooltip("The relative velocity required for it to explode")]
+    private bool alreadyExploded = false;
+    public bool multipleExplosions;
+    public float velocityForExplosion;
     public float range;
     private float slope;
     public float maxForce;
     private List<Rigidbody2D> currentlyColliding;
-
+    public bool hasExploded()
+    {
+        return alreadyExploded;
+    }
     public void Explode()
     {
-   
-        foreach(Rigidbody2D rigBody in currentlyColliding){
-            addForce(rigBody);
+        if (!(alreadyExploded && !multipleExplosions))
+        {
+            foreach (Rigidbody2D rigBody in currentlyColliding)
+            {
+                addForce(rigBody);
+            }
+            alreadyExploded = true;
         }
+    }
+    public void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.relativeVelocity.sqrMagnitude > velocityForExplosion)
+        {
+            Explode();
+        }
+
     }
     private float getAngle(Vector2 point1, Vector2 point2)
     {
@@ -51,6 +73,15 @@ public class explosionForce : MonoBehaviour
             }
         }
         return ang;
+    } 
+    IEnumerator exp(explosionForce e)
+    {
+        yield return new WaitForSeconds(e.delayOfExplosionTransfer);
+        if (!e.hasExploded())
+        {
+            e.Explode();
+            Debug.Log("BOOM");
+        }
     }
     private void addForce(Rigidbody2D rigBody)
     {
@@ -67,14 +98,14 @@ public class explosionForce : MonoBehaviour
                 rigBody.GetComponent<Snappable>().destroy();
             }
         }
-
-    }
-
-    void Update()
-    {
-        if (Input.anyKeyDown)
+        if (rigBody.GetComponent<explosionForce>())
         {
-            Explode();
+            explosionForce e = rigBody.GetComponent<explosionForce>();
+            if (e.explodeWithExplosion)
+            {
+                StartCoroutine(exp(e));
+                
+            }
         }
     }
     void Start()
