@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CircleCollider2D))]
 public class explosionForce : MonoBehaviour
 {
+	public Vector2 forceToApplyAsAResultOfTheFire;
     [Tooltip("whether or not it will explode when another explsion applies a force on it")]
     public bool explodeWithExplosion=true;
     [Tooltip("the delay before it explodes from another explosion")]
@@ -22,6 +23,11 @@ public class explosionForce : MonoBehaviour
     {
         return alreadyExploded;
     }
+	public void Update(){
+		if (hasExploded()) {
+			rigidbody2D.AddRelativeForce(forceToApplyAsAResultOfTheFire);
+				}
+		}
     public void Explode()
     {
 				if (!(alreadyExploded && !multipleExplosions)) {
@@ -113,6 +119,7 @@ public class explosionForce : MonoBehaviour
     }
     void Start()
     {
+		forceToApplyAsAResultOfTheFire *= rigidbody2D.mass;
         currentlyColliding = new List<Rigidbody2D>();
     }
     void OnTriggerEnter2D(Collider2D coll)
