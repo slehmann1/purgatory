@@ -11,6 +11,7 @@ public class explosionForce : MonoBehaviour
     public float delayOfExplosionTransfer=0.5f;
     [Tooltip("The relative velocity required for it to explode")]
     private bool alreadyExploded = false;
+	public ParticleSystem[] particles;
     public bool multipleExplosions;
     public float velocityForExplosion;
     public float range;
@@ -23,15 +24,17 @@ public class explosionForce : MonoBehaviour
     }
     public void Explode()
     {
-        if (!(alreadyExploded && !multipleExplosions))
-        {
-            foreach (Rigidbody2D rigBody in currentlyColliding)
-            {
-                addForce(rigBody);
-            }
-            alreadyExploded = true;
-        }
-    }
+				if (!(alreadyExploded && !multipleExplosions)) {
+						foreach (Rigidbody2D rigBody in currentlyColliding) {
+								addForce (rigBody);
+						}
+						alreadyExploded = true;
+						foreach (ParticleSystem particle in particles) {
+								particle.enableEmission=true;
+						}
+
+				}
+		}
     public void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.relativeVelocity.sqrMagnitude > velocityForExplosion)
