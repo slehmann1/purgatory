@@ -30,7 +30,9 @@ public class explosionForce : MonoBehaviour
 		}
     public void Explode()
     {
+
 				if (!(alreadyExploded && !multipleExplosions)) {
+			Debug.Log ("BOOOMSHAKALAKA");
 						foreach (Rigidbody2D rigBody in currentlyColliding) {
 								addForce (rigBody);
 						}
