@@ -38,14 +38,14 @@ public class explosionForce : MonoBehaviour
 						}
 						alreadyExploded = true;
 						foreach (ParticleSystem particle in particles) {
-								particle.enableEmission=true;
+				particle.Play();
 						}
 
 				}
 		}
     public void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.relativeVelocity.sqrMagnitude > velocityForExplosion)
+        if (coll.relativeVelocity.magnitude > velocityForExplosion)
         {
             Explode();
         }
@@ -91,7 +91,6 @@ public class explosionForce : MonoBehaviour
         if (!e.hasExploded())
         {
             e.Explode();
-            Debug.Log("BOOM");
         }
     }
     private void addForce(Rigidbody2D rigBody)
