@@ -10,12 +10,6 @@ public class laserConnector : MonoBehaviour {
     {
         originalWidth = renderer.bounds.extents.x;
     }
-    public void OnEnable()
-    {
-        
-        Update();
-        Debug.Break();
-    }
     public void flip()
     {
         flipped = !flipped;

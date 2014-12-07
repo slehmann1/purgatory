@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 [RequireComponent(typeof(ObjectPooler))]
 public class GrapplingHook : MonoBehaviour {
+    [Tooltip("The amount of time for the grappling hook length to change, per scrollwheel update")]
+    public float timeToChangeLength; 
     private bool ignoreLimits;
     public float range;
     private float gap;
@@ -313,6 +315,59 @@ public class GrapplingHook : MonoBehaviour {
         endJoint.enabled=true;
 
     }
+    IEnumerator changeLengthOverTime(bool towardsCenter)
+    {
+        Vector3 target;
+        float timePassed = 0;
+        float targetDistance;
+        targetDistance = Vector3.Distance(player.transform.position, end.transform.position);
+          if (towardsCenter)
+        {
+            targetDistance -= changeSpeed;
+        }
+        else
+        {
+            targetDistance += changeSpeed;
+        }
+        if(targetDistance<minimumDistance){
+            targetDistance = minimumDistance;
+        }
+          Debug.Log("targetDistance: " + targetDistance+"Original Distance: "+  Vector3.Distance(player.transform.position, end.transform.position));
+      
+        while (timePassed < timeToChangeLength)
+        {
+            timePassed += Time.deltaTime;
+            if (towardsCenter)//has to be done every frame
+            {
+                target = Vector3.Lerp(end.transform.position, player.transform.position, (targetDistance/Vector3.Distance(player.transform.position, end.transform.position)));
+                Debug.Log(target);
+            }
+            else
+            {
+                target = Vector3.Lerp(player.transform.position, end.transform.position, (Vector3.Distance(player.transform.position, end.transform.position) / targetDistance));
+            }
+            
+            Vector3 newPos=Vector3.Lerp(player.transform.position, target, timePassed / timeToChangeLength);
+            if(Vector3.Distance(player.transform.position,newPos)>=minimumDistance){
+                player.transform.position = newPos;
+                Debug.Log("YIKES");
+            }
+
+            try
+            {
+                obj.SetActive(true);
+                endScript.updateLength();
+                endScript.setRange(Vector3.Distance(target, transform.position));
+                //  end.transform.position=target;
+            }
+            catch
+            {
+            }
+            
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("final Distance: " + Vector3.Distance(player.transform.position, end.transform.position) + " | " + Vector3.Distance(player.transform.position, end.transform.position) / targetDistance);
+    }
     /// <summary>
     /// Changes the length of the grapplingHook by moving the player
     /// </summary>
@@ -326,7 +381,7 @@ public class GrapplingHook : MonoBehaviour {
                 towardsCenter=!towardsCenter;
             }
             //progress += (Input.GetAxis ("Change_Grappling_Hook_Length") * Time.deltaTime * changeSpeed);
-            Vector3 newVec=player.transform.position-end.transform.position;
+           /* Vector3 newVec=player.transform.position-end.transform.position;
             newVec*=-1;
             newVec.Normalize();
             newVec*=changeSpeed;
@@ -339,16 +394,9 @@ public class GrapplingHook : MonoBehaviour {
                 //away from hook
                 if (Vector2.Distance(player.transform.position-newVec, end.transform.position)>=minimumDistance)
                     player.transform.position-=(newVec);
-            }
-           
-            try {
-                obj.SetActive(true);
-                endScript.updateLength();
-                endScript.setRange(Vector3.Distance(target, transform.position));
-              //  end.transform.position=target;
-            }
-            catch {
-            }
+            }*/
+            StartCoroutine(changeLengthOverTime(towardsCenter));
+            
         }
 		//if this is not done, sometimes the hinge joint does not do anything
 		endJoint.enabled=false;
