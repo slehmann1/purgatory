@@ -6,7 +6,7 @@ using System.Collections;
 public class GrapplingHook : MonoBehaviour {
     private bool ignoreLimits;
     public float range;
-    private float angle, gap;
+    private float gap;
     public float changeSpeed;
 	public float limit;
     Vector2 target, oldTarget;
@@ -23,6 +23,8 @@ public class GrapplingHook : MonoBehaviour {
     public bool invertedScroll;
     private TrailRenderer trail;
     private HingeJoint2D endJoint;
+    private laserConnector lasCon;
+    
     void Start() {
         obj=(GameObject)GameObject.Instantiate(obj);
         //		trailSub = transform.GetChild (0).gameObject;
@@ -43,6 +45,10 @@ public class GrapplingHook : MonoBehaviour {
         endJoint=obj.AddComponent<HingeJoint2D>();
         endJoint.anchor=new Vector2(0.5f, 0);
         endJoint.connectedBody=end.rigidbody2D;
+         lasCon = obj.GetComponent<laserConnector>();
+        lasCon.endPoint = end.transform;
+        lasCon.startPoint = transform.parent;
+        lasCon.player = player.transform;
     }
     /// <summary>
     /// Resets the trail renderer.
@@ -59,6 +65,7 @@ public class GrapplingHook : MonoBehaviour {
     void removeLine() {
         //		objEnd.stop ();
         obj.SetActive(false);
+        
         endScript.deactivate();
     }
     /// <summary>
@@ -69,10 +76,7 @@ public class GrapplingHook : MonoBehaviour {
         StartCoroutine(resetTrailRenderer());
 
         grappling=true;
-        angle=Mathf.Atan(Mathf.Abs((target.y-transform.position.y)/(target.x-transform.position.x)));
-        angle=getAngle(target,transform.position);
 
-        connect(obj.transform, transform.position, target);
         obj.SetActive(true);
         endScript.Spawn();
         endScript.setRange(Vector3.Distance(target, transform.position));
@@ -110,9 +114,11 @@ public class GrapplingHook : MonoBehaviour {
             float newX=-1*(end.transform.position.x-transform.position.x)+transform.position.x;
             transform.Rotate(new Vector3(0, 180, 0));
             end.transform.position=new Vector3(newX, end.transform.position.y, end.transform.position.z);//prevents the hook from shifting closer and closer to 90 degrees up
+            lasCon.flip();
         }
         else {
             transform.Rotate(new Vector3(0, 180, 0));
+            lasCon.flip();
         }
             //set position to behind the player
         transform.position=new Vector3(transform.position.x, transform.position.y, -transform.position.z);
@@ -134,26 +140,7 @@ public class GrapplingHook : MonoBehaviour {
     /// <param name="obj"></param>
     /// <param name="start"></param>
     /// <param name="end"></param>
-    void connect(Transform obj, Vector3 start, Vector3 end) {
 
-        //this is where the math starts
-        //setting the position to halfway between the beginning and the end
-        obj.position=Vector3.Lerp(start, end, 0.5f);
-        Debug.DrawLine(start, obj.position, Color.red, 2f, false);
-        //getting the scale
-        float scale=Vector3.Distance(start, end);
-        // scale*=2f;
-
-
-        obj.transform.localScale=new Vector3(scale/player.transform.lossyScale.x, obj.transform.localScale.y);
-
-        if (scale<0) {
-            Debug.LogWarning("The spacing is too high!");
-        }
-        //trig
-        float degrees=Mathf.Atan((end.y-start.y)/(end.x-start.x));
-        obj.localRotation=Quaternion.Euler(0, 0, angle*180/Mathf.PI);
-    }
     void Update() {
         if (Input.GetButtonDown("Create_Grappling_Hook")&&!pMov.getMovementDisabled()) {
             if (!grappling) {
@@ -313,8 +300,6 @@ public class GrapplingHook : MonoBehaviour {
             }
             removeLine();
             try {
-                angle=getAngle(target, transform.position);
-                connect(obj.transform, transform.position, target);
                 obj.SetActive(true);
                 endScript.updateLength();
                 endScript.setRange(Vector3.Distance(target, transform.position));
@@ -357,12 +342,10 @@ public class GrapplingHook : MonoBehaviour {
             }
            
             try {
-                angle=getAngle(target,transform.position);
-                connect(obj.transform, transform.position, target);
                 obj.SetActive(true);
                 endScript.updateLength();
                 endScript.setRange(Vector3.Distance(target, transform.position));
-                end.transform.position=target;
+              //  end.transform.position=target;
             }
             catch {
             }

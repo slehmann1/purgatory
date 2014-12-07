@@ -19,7 +19,7 @@ public class GrapplingEnd : MonoBehaviour {
     /// spawns without updating the rotation
     /// </summary>
     public void updateLength() {
-        coll.enabled=true;
+        //coll.enabled=true;
         renderer.enabled=true;
         active=true;
         dist.enabled=true;
@@ -38,11 +38,10 @@ public class GrapplingEnd : MonoBehaviour {
         dist.enabled=true;
         transform.rotation=initRot;
         parts.enableEmission=true;
-        collider2D.enabled=true;
 		}
     public void deactivate() {
         try {
-            //coll.enabled=false;
+            coll.enabled=false;
             renderer.enabled=false;
             active=false;
             dist.enabled=false;
@@ -101,7 +100,7 @@ public class GrapplingEnd : MonoBehaviour {
 				}
 		objConnection.distance = connectedObjectDistance;
 		objConnection.enabled = true;
-        collider2D.enabled=false;
+        coll.enabled=false;
 		}
     void OnCollisionEnter2D(Collision2D collision) {
         if (active&&!contacted) {
@@ -109,10 +108,9 @@ public class GrapplingEnd : MonoBehaviour {
                 float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
                 rotation*=180;
                 rotation/=Mathf.PI;
-                //Debug.Log(rotation);
                 rot=Quaternion.Euler(new Vector3(0f, 0f, rotation));
             }
-            transform.parent=null;
+            transform.parent=collision.transform;
             rigidbody2D.isKinematic=true;
             transform.localRotation=Quaternion.identity;
             if (!contacted&&rotationEnabled) {//if it has simply changed length, will not update the rotation
