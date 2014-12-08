@@ -317,8 +317,8 @@ public class GrapplingHook : MonoBehaviour {
     }
     IEnumerator changeLengthOverTime(bool towardsCenter)
     {
-        float lerpProgress = 0;
-       
+        float lerpChange = 0;
+		float originalDistance = Vector2.Distance (player.transform.position, end.transform.position);
         float timePassed = 0;
         float targetDistance;
         targetDistance = Vector3.Distance(player.transform.position, end.transform.position);
@@ -347,15 +347,12 @@ public class GrapplingHook : MonoBehaviour {
         {
 
             timePassed += Time.deltaTime;
-            lerpProgress = (timePassed / timeToChangeLength)*0.5F; 
+            lerpChange = (Time.deltaTime / timeToChangeLength); 
 
-            if(towardsCenter){
-          player.transform.position = Vector3.Lerp(player.transform.position, end.transform.position, lerpProgress);
-			}else{
-				player.transform.position += player.transform.position-Vector3.Lerp(player.transform.position, end.transform.position, -lerpProgress);
-
-			}
-
+			float angle = getAngle (transform.position,end.transform.position);
+			float targetLength = (originalDistance-targetDistance)*lerpChange;
+			Vector3 change = new Vector3(Mathf.Cos (angle)*targetLength+Mathf.Sin (angle)*targetLength,player.transform.position.z);
+			player.transform.position= player.transform.position+change;
             try
             {
                 obj.SetActive(true);
