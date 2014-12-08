@@ -337,28 +337,19 @@ public class GrapplingHook : MonoBehaviour {
         while (timePassed < timeToChangeLength)
         {
             timePassed += Time.deltaTime;
-            if (towardsCenter)//has to be done every frame
+            if (towardsCenter)
             {
-                target = Vector3.Lerp(end.transform.position, player.transform.position, (targetDistance/Vector3.Distance(player.transform.position, end.transform.position)));
-                Debug.Log(target);
+                player.transform.position = Vector3.MoveTowards(player.transform.position, end.transform.position, (timePassed / timeToChangeLength * changeSpeed));
             }
             else
             {
-                target = Vector3.Lerp(player.transform.position, end.transform.position, (Vector3.Distance(player.transform.position, end.transform.position) / targetDistance));
+                player.transform.position = Vector3.MoveTowards(player.transform.position, end.transform.position, (timePassed / timeToChangeLength * -changeSpeed));
             }
-            
-            Vector3 newPos=Vector3.Lerp(player.transform.position, target, timePassed / timeToChangeLength);
-            if(Vector3.Distance(player.transform.position,newPos)>=minimumDistance){
-                player.transform.position = newPos;
-                Debug.Log("YIKES");
-            }
-
             try
             {
                 obj.SetActive(true);
                 endScript.updateLength();
-                endScript.setRange(Vector3.Distance(target, transform.position));
-                //  end.transform.position=target;
+                endScript.setRange(Vector3.Distance(end.transform.position, transform.position));
             }
             catch
             {
