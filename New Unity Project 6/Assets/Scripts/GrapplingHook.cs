@@ -316,12 +316,12 @@ public class GrapplingHook : MonoBehaviour {
 
     }
     IEnumerator changeLengthOverTime(bool towardsCenter)
-    {
-        float lerpProgress = 0;
-       
+    {    
         float timePassed = 0;
         float targetDistance;
-        targetDistance = Vector3.Distance(player.transform.position, end.transform.position);
+        float originalDistance = Vector3.Distance(player.transform.position, end.transform.position);
+        float currentDistance = originalDistance;         
+        targetDistance = currentDistance;
           if (towardsCenter)
         {
             targetDistance -= changeSpeed;
@@ -329,31 +329,30 @@ public class GrapplingHook : MonoBehaviour {
         else
         {
             targetDistance += changeSpeed;
-        }
-        if(targetDistance<minimumDistance){
-            targetDistance = minimumDistance;
-        }
-        if (targetDistance > range)
-        {
-            targetDistance = range;
-        }
-          Debug.Log("targetDistance: " + targetDistance+"Original Distance: "+  Vector3.Distance(player.transform.position, end.transform.position));
-          float lerpMultiplier =targetDistance/ Vector3.Distance(player.transform.position, end.transform.position) ;
-          Debug.Log(lerpMultiplier);
+        }        
         while (timePassed < timeToChangeLength)
         {
-            timePassed += Time.deltaTime;
-            lerpProgress = (timePassed / timeToChangeLength)*lerpMultiplier;
-
-            
-            if (towardsCenter)
-            {
-                player.transform.position = Vector3.Lerp(end.transform.position,player.transform.position, lerpProgress);
+            if(towardsCenter){
+                currentDistance+=((targetDistance-originalDistance)*Time.deltaTime/timeToChangeLength);
+                if (currentDistance < minimumDistance)
+                {
+                    currentDistance = minimumDistance;
+                }
             }
             else
             {
-                 player.transform.position = Vector3.Lerp(player.transform.position, end.transform.position, lerpProgress);
+                currentDistance += ((targetDistance - originalDistance) * Time.deltaTime / timeToChangeLength);
+                if (currentDistance > range)
+                {
+                    currentDistance = range;
+                }
             }
+            timePassed += Time.deltaTime;
+            float angle =getAngle(player.transform.position,end.transform.position);
+
+            player.transform.position = new Vector3(end.transform.position.x+Mathf.Cos(angle)*currentDistance,end.transform.position.y+Mathf.Sin(angle)*currentDistance,player.transform.position.z); 
+
+
             try
             {
                 obj.SetActive(true);
