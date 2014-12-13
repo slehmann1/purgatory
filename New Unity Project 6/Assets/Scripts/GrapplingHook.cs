@@ -316,7 +316,13 @@ public class GrapplingHook : MonoBehaviour {
 
     }
     IEnumerator changeLengthOverTime(bool towardsCenter)
+<<<<<<< HEAD
     {    
+=======
+    {
+        float lerpChange = 0;
+		float originalDistance = Vector2.Distance (player.transform.position, end.transform.position);
+>>>>>>> origin/master
         float timePassed = 0;
         float targetDistance;
         float originalDistance = Vector3.Distance(player.transform.position, end.transform.position);
@@ -329,6 +335,7 @@ public class GrapplingHook : MonoBehaviour {
         else
         {
             targetDistance += changeSpeed;
+<<<<<<< HEAD
         }        
         while (timePassed < timeToChangeLength)
         {
@@ -353,6 +360,32 @@ public class GrapplingHook : MonoBehaviour {
             player.transform.position = new Vector3(end.transform.position.x+Mathf.Cos(angle)*currentDistance,end.transform.position.y+Mathf.Sin(angle)*currentDistance,player.transform.position.z); 
 
 
+=======
+        }
+        if(targetDistance<minimumDistance){
+            targetDistance = minimumDistance;
+        }
+        if (targetDistance > range) {
+						targetDistance = range;
+				}
+		float movementFactor; 
+	
+		movementFactor =  targetDistance/Vector2.Distance (player.transform.position, end.transform.position);
+
+				
+		Debug.Log (" " + targetDistance+ " | "+ (Vector2.Distance (player.transform.position,end.transform.position)*movementFactor));
+       
+        while (timePassed < timeToChangeLength)
+        {
+
+            timePassed += Time.deltaTime;
+            lerpChange = (Time.deltaTime / timeToChangeLength); 
+
+			float angle = getAngle (transform.position,end.transform.position);
+			float targetLength = (originalDistance-targetDistance)*lerpChange;
+			Vector3 change = new Vector3(Mathf.Cos (angle)*targetLength+Mathf.Sin (angle)*targetLength,player.transform.position.z);
+			player.transform.position= player.transform.position+change;
+>>>>>>> origin/master
             try
             {
                 obj.SetActive(true);
@@ -362,9 +395,9 @@ public class GrapplingHook : MonoBehaviour {
             catch
             {
             }
-            
             yield return new WaitForEndOfFrame();
         }
+		Debug.Log("targetDistance: " + targetDistance+"Distance: "+  Vector2.Distance(player.transform.position, end.transform.position));
          }
     /// <summary>
     /// Changes the length of the grapplingHook by moving the player
