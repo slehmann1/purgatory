@@ -6,7 +6,7 @@ public class SavePointScript : MonoBehaviour {
 	public GameObject flagPole;
 	private bool rotating;
 	public float Speed;
-	float progress;
+    float progress;
 	public CannonBehaviour[] Cannons;
 	public AudioClip[] audios;
 	void Start(){
@@ -32,7 +32,7 @@ public class SavePointScript : MonoBehaviour {
 	}
 	void activate(){
 		if(flagPole.transform.rotation.z/Mathf.PI<1&&!rotating){
-			player.spawn=transform.position;
+            player.spawn = new Vector3(transform.position.x, transform.position.y, player.transform.position.z);
 			audio.PlayDelayed(12000);
 			rotating=true;
 			InvokeRepeating("rotate",0.01f,0.01f);

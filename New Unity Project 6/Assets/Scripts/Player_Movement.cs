@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+[RequireComponent (typeof(Collider2D))]
 public class Player_Movement : MonoBehaviour {
     //on death a snarky comment like- the players heart has stopped beating, this kills the player
     public GameObject doubleJumpPref;
     public bool facingRight=true;
+    public groundCheck groundCheck;
     public float wallJumpForce, wallJumpAngle;
     public float moveForce=365f;
     public float grapplingMovement, airMovement;// Amount of force added to move the player left and right.
@@ -11,7 +13,6 @@ public class Player_Movement : MonoBehaviour {
     public float jumpForce=1000f;
     public float clingForce=400f;
     public float dubJumpForce=100f;//force added on jump
-    private Transform groundCheck;
     public Transform [] leftWallCheck, rightWallCheck;	// A position marking where to check if the player is grounded.
     private bool grounded=false;
     private bool grappling=false;
@@ -20,7 +21,7 @@ public class Player_Movement : MonoBehaviour {
     private bool dubjump=false;
     private bool WallJumping, leftWallJump, clinging, clingJumping, onWall;//prevents continuous wall jumping
     public PhysicsMaterial2D jumping, normal, stopping, clingingJump;
-    private BoxCollider2D coll;
+    private Collider2D coll;
     private Vector3 old;
     private string text="Running";
     private DoubleJumpParticle doubleJumpParticle;
@@ -47,9 +48,7 @@ public class Player_Movement : MonoBehaviour {
         spawnEffect.spawn();
     }
     void Awake() {
-        // Setting up references.
-        groundCheck=transform.Find("groundCheck");
-        coll=(BoxCollider2D)GetComponent("BoxCollider2D");
+        coll=(Collider2D)GetComponent<Collider2D>();
     }
     void Clinging() { //TODO implement clinging
         text+="CLINGING!";
@@ -61,7 +60,7 @@ public class Player_Movement : MonoBehaviour {
             text="";
             // Check if grounded
             bool wallJump=false;
-            grounded=Physics2D.Linecast(transform.position, groundCheck.position, 1<<LayerMask.NameToLayer("level"));
+            grounded = groundCheck.isGrounded();
             if (Physics2D.Linecast(transform.position, leftWallCheck [0].position, 1<<LayerMask.NameToLayer("level"))) {
                 leftWallJump=true;
                 wallJump=true;
