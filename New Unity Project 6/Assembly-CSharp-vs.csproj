@@ -97,6 +97,7 @@
      <Compile Include="Assets\Scripts\explosionForce.cs" />
      <Compile Include="Assets\Scripts\groundCheck.cs" />
      <Compile Include="Assets\Scripts\laserConnector.cs" />
+     <Compile Include="Assets\Scripts\levelEnd.cs" />
      <Compile Include="Assets\Scripts\playerSave.cs" />
      <Compile Include="Assets\Scripts\rotator.cs" />
      <Compile Include="Assets\Scripts\saveManager.cs" />

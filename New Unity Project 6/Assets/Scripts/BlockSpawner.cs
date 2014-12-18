@@ -113,7 +113,7 @@ public class BlockSpawner: MonoBehaviour
 														} catch {
 														}
 												}
-												GetComponent<BoxCollider2D> ().enabled = false;
+												collider2D.enabled = false;
 										} else {
 						heartsList.flash();
 										}
@@ -139,7 +139,7 @@ public class BlockSpawner: MonoBehaviour
 						} catch {
 						}
 				}
-				GetComponent<BoxCollider2D> ().enabled = true;
+				collider2D.enabled = true;
 				GetComponent<Player_Movement> ().setMovementDisabled (false);
 		}
 }
