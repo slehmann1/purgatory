@@ -22,13 +22,16 @@ public class BlockSpawner: MonoBehaviour
 
 		p=GetComponent<Player_Movement>();
             rig=GetComponent<Rigidbody2D>();
-        hook=GetComponentInChildren<GrapplingHook>();
 				camTrack = camera.GetComponent<Camera_Tracker> ();
 				blocks = new List<GameObject> ();
 				graves = new List<GameObject> ();
 				heartsList = GameObject.Find ("LifeCounter").GetComponent<Lives> ();
 				pillsList = GameObject.Find ("PillCounter").GetComponent<Lives> ();
 		}
+        public void getHook()
+        {
+            hook = GetComponentInChildren<GrapplingHook>();
+        }
 		private bool possibleToSpawn (GameObject obj, float yoff)
 		{
 				Debug.DrawRay (transform.position, new Vector3 (0, -(yoff + obj.renderer.bounds.size.y), 0), Color.magenta, 5f);
@@ -40,7 +43,15 @@ public class BlockSpawner: MonoBehaviour
 		private GameObject createBlock (GameObject obj,GameObject silhouette, float yoff)
 		{
 				if (possibleToSpawn (obj, yoff)) {
-                    hook.removeHook();
+                    try
+                    {
+                        hook.removeHook();
+                    }
+                    catch
+                    {
+                        getHook();
+                        hook.removeHook();
+                    }
 						GameObject g = (GameObject)Instantiate (obj, new Vector2 (transform.position.x, transform.position.y - yoff - obj.renderer.bounds.size.y / 2), Quaternion.identity);
 			g.GetComponent<Collider2D>().enabled=false;
 						g.transform.parent = parent;

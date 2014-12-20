@@ -25,7 +25,7 @@ public class ConnectViaDuplicationEditor : Editor {
     void createPool() {
 
 
-        objs=new List<GameObject>();
+        objs=new List<GameObject>(); 
 
         foreach (Transform child in myTarget.transform) {
             if (child.name.Equals("PooledObject")) {
@@ -249,6 +249,7 @@ public class ConnectViaDuplicationEditor : Editor {
     }
 	float getWidth(){
 		if (myTarget.connector.GetComponent<BoxCollider2D> ()) {
+            Debug.Log("DONE");
 						return myTarget.connector.GetComponent<BoxCollider2D> ().size.x*myTarget.objScale;
 				} if (myTarget.connector.GetComponent<PolygonCollider2D> ()) {
 						Vector2 [] points = myTarget.connector.GetComponent<PolygonCollider2D> ().points;

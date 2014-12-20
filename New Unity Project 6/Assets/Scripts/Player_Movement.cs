@@ -22,7 +22,7 @@ public class Player_Movement : MonoBehaviour
     private bool dubjump = false;
     private bool WallJumping, leftWallJump, clinging, clingJumping, onWall;//prevents continuous wall jumping
     public PhysicsMaterial2D jumping, normal, stopping, clingingJump;
-    private Collider2D coll;
+    private Collider2D[] coll;
     private Vector3 old;
     private string text = "Running";
     private DoubleJumpParticle doubleJumpParticle;
@@ -53,7 +53,7 @@ public class Player_Movement : MonoBehaviour
     }
     void Awake()
     {
-        coll = (Collider2D)GetComponent<Collider2D>();
+        coll = GetComponents<Collider2D>();
     }
     void Clinging()
     { //TODO implement clinging
@@ -176,29 +176,48 @@ public class Player_Movement : MonoBehaviour
         text += rigidbody2D.velocity.x;
         animator.SetFloat("Speed", 0.0f);
         float h = Input.GetAxis("Horizontal");
-        coll.enabled = false;//there is a bug in unity that requires collider to be disabled and then enabled
-        //when changing 2d physics materials, check if still there every time unity updates
+        foreach (Collider2D col in coll)
+        {
+            col.enabled = false;//there is a bug in unity that requires collider to be disabled and then enabled
+            //when changing 2d physics materials, check if still there every time unity updates
+        }
+   
         if (clingJumping)
         {
-            coll.collider2D.sharedMaterial = clingingJump;
+            foreach (Collider2D col in coll)
+            {
+                col.collider2D.sharedMaterial = clingingJump;
+            }
         }
         else if (h == 0.0 && grounded || clinging)
         {
-            coll.collider2D.sharedMaterial = stopping;
+             foreach (Collider2D col in coll)
+            {
+            col.collider2D.sharedMaterial = stopping;
+             }
         }
         else
         {
             if (grounded)
             {
-                coll.collider2D.sharedMaterial = normal;
+                 foreach (Collider2D col in coll)
+            {
+                col.collider2D.sharedMaterial = normal;
+                 }
             }
             else
             {
-                coll.collider2D.sharedMaterial = jumping;
+                foreach (Collider2D col in coll)
+                {
+                    col.collider2D.sharedMaterial = jumping;
+                }
             }
         }
-        coll.enabled = true;//there is a bug in unity that requires collider to be disabled and then enabled
-        //when changing 2d physics materials, check if still there every time unity updates
+        foreach (Collider2D col in coll)
+        {
+            col.enabled = true;//there is a bug in unity that requires collider to be disabled and then enabled
+            //when changing 2d physics materials, check if still there every time unity updates
+        }
         if (h * rigidbody2D.velocity.x < maxSpeed)
         {
             // ... add a force to the player.
