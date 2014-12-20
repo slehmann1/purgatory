@@ -7,6 +7,7 @@ public class GrapplingHook : MonoBehaviour
 {
     [Tooltip("The amount of time for the grappling hook length to change, per scrollwheel update")]
     public float timeToChangeLength;
+    public LayerMask possibleLayers;
     private bool ignoreLimits;
     public float range;
     private float gap;
@@ -98,14 +99,15 @@ public class GrapplingHook : MonoBehaviour
         {
             if (hasHitObj)
             {
-                GameObject blockTouched = Physics2D.OverlapCircle(target, 1f, 1 << LayerMask.NameToLayer("level")).gameObject;
+                Debug.Log(target);
+                GameObject blockTouched = Physics2D.OverlapCircle(target, 1f, possibleLayers).gameObject;
                 if (blockTouched)
                 {//it is a possibility that there is no block within the circle
                     ignoreLimits = false;
                     //if the player is beyond the horizontal edge of the block
                     try
                     {
-                        if (Physics2D.Raycast(transform.position, Vector3.down, range, 1 << LayerMask.NameToLayer("level")).transform.gameObject != blockTouched)
+                        if (Physics2D.Raycast(transform.position, Vector3.down, range, possibleLayers).transform.gameObject != blockTouched)
                         {
                             ignoreLimits = true;
                         }
@@ -169,9 +171,9 @@ public class GrapplingHook : MonoBehaviour
                 newVec *= -1;
                 newVec.Normalize();
                 removeLine();
-                if (Physics2D.Raycast(transform.position, newVec, range, 1 << 8))
+                if (Physics2D.Raycast(transform.position, newVec, range,possibleLayers ))
                 {
-                    targetCast = Physics2D.Raycast(transform.position, newVec, range, 1 << 8);
+                    targetCast = Physics2D.Raycast(transform.position, newVec, range,possibleLayers);
                     oldTarget = targetCast.point;
                     hasHitObj = true;
                     pMov.setGrappling(true);
@@ -199,9 +201,9 @@ public class GrapplingHook : MonoBehaviour
                 Vector3 newVec = transform.position - end.transform.position;
                 newVec *= -1;
                 newVec.Normalize();
-                if (Physics2D.Raycast(transform.position, newVec, range, 1 << 8))
+                if (Physics2D.Raycast(transform.position, newVec, range, possibleLayers))
                 {
-                    targetCast = Physics2D.Raycast(transform.position, newVec, range, 1 << 8);
+                    targetCast = Physics2D.Raycast(transform.position, newVec, range, possibleLayers);
                     oldTarget = targetCast.point;
                     hasHitObj = true;
                     target = oldTarget;
