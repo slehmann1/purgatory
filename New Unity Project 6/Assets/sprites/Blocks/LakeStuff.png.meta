@@ -1,0 +1,102 @@
+fileFormatVersion: 2
+guid: e75c3e861e8126643a069c05fc926f05
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Water
+    21300002: LilyPad
+    21300004: PussyWillows
+    21300006: LakeShore
+    21300008: PondGrass
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Water
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2647
+        width: 3305
+        height: 1445
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LilyPad
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1050
+        width: 675
+        height: 264
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PussyWillows
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 151
+        width: 933
+        height: 932
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LakeShore
+      rect:
+        serializedVersion: 2
+        x: 2361
+        y: 8
+        width: 3237
+        height: 1723
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PondGrass
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 200
+        width: 603
+        height: 779
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
