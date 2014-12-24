@@ -5,6 +5,7 @@ public class BlockSpawner: MonoBehaviour
 		public GameObject Block, BlockSilhouette, Gravestone,GravestoneSilhouette;
 		public string pillSpawn, heartSpawn;
 		public float blockYOffset, gravesYOffset;
+    [Tooltip ("This shall be the parent of the spawned blocks.")]
 		public Transform parent;
         private GrapplingHook hook;
 		private List <GameObject> blocks, graves;

@@ -46,6 +46,7 @@ public class GrapplingHook : MonoBehaviour
         end = (GameObject)GameObject.Instantiate(end);
         end.transform.parent = transform.parent;
         endScript = end.GetComponent<GrapplingEnd>();
+        endScript.setLayersToGrapple(possibleLayers);
         endScript.Setup(obj);
         endJoint = obj.AddComponent<HingeJoint2D>();
         endJoint.anchor = new Vector2(0.5f, 0);

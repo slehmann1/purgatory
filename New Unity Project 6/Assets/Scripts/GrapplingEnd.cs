@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 public class GrapplingEnd : MonoBehaviour {
 	private Rigidbody2D rig;
     private GameObject stem,connectedObj;
@@ -9,9 +10,14 @@ public class GrapplingEnd : MonoBehaviour {
     private Quaternion rot, initRot;
     private bool contacted;
 	private DistanceJoint2D dist,objConnection;
+    private LayerMask layersToGrapple;
 	private const  float connectedObjectDistance=0.01f;
     private ParticleSystem parts;
-    public bool rotationEnabled;
+
+    public void setLayersToGrapple(LayerMask l)
+    {
+        layersToGrapple = l;
+    }
     public void setRange(float range) {
         dist.distance=range;
     }
@@ -34,9 +40,7 @@ public class GrapplingEnd : MonoBehaviour {
         renderer.enabled=true;
         active=true;
         contacted=false;
-        initRot=transform.rotation;
         dist.enabled=true;
-        transform.rotation=initRot;
         parts.enableEmission=true;
 		}
     public void deactivate() {
@@ -54,7 +58,6 @@ public class GrapplingEnd : MonoBehaviour {
        // rigidbody2D.isKinematic=false;
     }
     public void Setup(GameObject newStem) {
-        initRot=transform.rotation;
         dist=GetComponent<DistanceJoint2D>();
         stem=newStem;
         dist.enabled=true;
@@ -75,9 +78,6 @@ public class GrapplingEnd : MonoBehaviour {
         try {
             if (!contacted) {//ifn the end isnt fixed-> set the pos/rot to the end of the stem
                 position=stem.transform.TransformPoint(new Vector2(0.5f, 0f));//set the world position to the local position of 0.5,0.5 in the bases space
-                if (rotationEnabled) { 
-                rot=stem.transform.rotation;
-                    }
             }
         }
         catch { }
@@ -102,21 +102,10 @@ public class GrapplingEnd : MonoBehaviour {
 		objConnection.enabled = true;
         coll.enabled=false;
 		}
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (active&&!contacted) {
-            if (rotationEnabled) {
-                float rotation=Mathf.Atan2(collision.contacts [0].normal.y, (collision.contacts [0].normal.x));//not sure on this,  should calculate the angle in relation to the collider7
-                rotation*=180;
-                rotation/=Mathf.PI;
-                rot=Quaternion.Euler(new Vector3(0f, 0f, rotation));
-            }
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (active&&!contacted&&(((1<<collision.gameObject.layer)&layersToGrapple.value)>0)) {//last condition is to check if they are the same layer
             transform.parent=collision.transform;
             rigidbody2D.isKinematic=true;
-            transform.localRotation=Quaternion.identity;
-            if (!contacted&&rotationEnabled) {//if it has simply changed length, will not update the rotation
-                transform.rotation=rot*initRot;
-            }
-
             contacted=true;
             connectedObj=collision.gameObject;
 			attachToObj();
@@ -126,11 +115,6 @@ public class GrapplingEnd : MonoBehaviour {
     void Update() {
         if (!contacted) {
             UpdatePos();
-            if (rotationEnabled) {
-                transform.rotation=rot*initRot;
-            }
-        }
-        else {
         }
     }
 }
