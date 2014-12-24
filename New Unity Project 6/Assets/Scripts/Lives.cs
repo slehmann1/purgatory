@@ -72,6 +72,10 @@ public class Lives : MonoBehaviour
 		public void Reset ()
 		{
 				livesLeft = number;
+                foreach (GUITexture g in lives)
+                {
+                    Destroy(g);
+                }
 				lives.Clear ();
 				setupLives ();
 		}

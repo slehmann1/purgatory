@@ -139,7 +139,7 @@ public class BlockSpawner: MonoBehaviour
 		}
 		private void revertTarget ()
 		{
-		GetComponent<Kill> ().death ();
+		GetComponent<Kill> ().temporaryDeath ();
 				CancelInvoke ();
 				camTrack.setTarget (this.transform);
 				reverting = false;

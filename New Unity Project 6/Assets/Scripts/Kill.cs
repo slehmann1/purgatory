@@ -3,8 +3,7 @@ using System.Collections;
 public class Kill : MonoBehaviour
 {
 		private Player_Movement p;
-		private Lives pills;
-		private Lives hearts;
+		private Lives pills, hearts;
 		void Start ()
 		{
 				hearts = GameObject.Find ("LifeCounter").GetComponent<Lives> ();
@@ -18,11 +17,20 @@ public class Kill : MonoBehaviour
 						Debug.Log ("Kill");
 				}
 		}
-		public void death ()
+    /// <summary>
+    /// This is the one that takes away a life
+    /// </summary>
+		public void temporaryDeath ()
 		{
 				//pills.Reset();
 				//hearts.Reset();
 				hearts.suicide ();
 				p.respawn ();
 		}
+        public void death()
+        {
+            hearts.Reset();
+            pills.Reset();
+            p.respawn();
+        }
 }

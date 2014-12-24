@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\destroyAfter.cs" />
     <Compile Include="Assets\Scripts\explosionForce.cs" />
     <Compile Include="Assets\Scripts\groundCheck.cs" />
+    <Compile Include="Assets\Scripts\killPlayerOnCollide.cs" />
     <Compile Include="Assets\Scripts\laserConnector.cs" />
     <Compile Include="Assets\Scripts\levelEnd.cs" />
     <Compile Include="Assets\Scripts\playerSave.cs" />
