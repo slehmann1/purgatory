@@ -32,5 +32,6 @@ public class Kill : MonoBehaviour
             hearts.Reset();
             pills.Reset();
             p.respawn();
+            
         }
 }

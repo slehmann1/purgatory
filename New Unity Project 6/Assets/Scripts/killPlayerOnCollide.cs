@@ -7,7 +7,7 @@ public class killPlayerOnCollide : MonoBehaviour {
     {
         try
         {
-            coll.GetComponent<Kill>().death();
+            coll.gameObject.SendMessageUpwards("death");
         }
         catch
         {
