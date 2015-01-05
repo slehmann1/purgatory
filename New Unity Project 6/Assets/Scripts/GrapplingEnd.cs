@@ -61,7 +61,7 @@ public class GrapplingEnd : MonoBehaviour {
         dist=GetComponent<DistanceJoint2D>();
         stem=newStem;
         dist.enabled=true;
-        dist.connectedBody=transform.parent.rigidbody2D;
+        dist.connectedBody=transform.parent.transform.parent.rigidbody2D;
         dist.enabled=false;
         transform.parent=stem.transform.parent.transform.parent;
         parts=GetComponent<ParticleSystem>();

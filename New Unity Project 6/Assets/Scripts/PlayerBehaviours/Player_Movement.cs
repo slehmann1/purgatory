@@ -3,7 +3,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Collider2D))]
 public class Player_Movement : MonoBehaviour
 {
-
+    //on death a snarky comment like- the players heart has stopped beating, this kills the player
     public GameObject doubleJumpPref;
     public bool facingRight = true;
     public groundCheck groundCheck;

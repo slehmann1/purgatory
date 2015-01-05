@@ -28,10 +28,7 @@ public class GrapplingHook : MonoBehaviour
     private TrailRenderer trail;
     private HingeJoint2D endJoint;
     private laserConnector lasCon;
-    void death()
-    {
-        removeHook();
-    }
+
     void Start()
     {
         obj = (GameObject)GameObject.Instantiate(obj);

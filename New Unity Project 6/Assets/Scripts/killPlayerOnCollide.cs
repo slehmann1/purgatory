@@ -5,11 +5,13 @@ public class killPlayerOnCollide : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.tag == "Player")
+        try
         {
-            coll.gameObject.SendMessageUpwards("death");//send to parent
-            coll.gameObject.BroadcastMessage("death");//send to children
+            coll.gameObject.SendMessageUpwards("death");
         }
-        
+        catch
+        {
+            //there is no kill component on the object, probably not the player that collided
+        }
     }
 }
