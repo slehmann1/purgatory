@@ -106,6 +106,7 @@
      <Compile Include="Assets\Scripts\saveManager.cs" />
      <Compile Include="Assets\Scripts\speedChangeEasterEgg.cs" />
      <Compile Include="Assets\Scripts\tempEnd.cs" />
+     <Compile Include="Assets\adjustToScreenSize.cs" />
      <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Samuel/Documents/purgatory/New Unity Project 6/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

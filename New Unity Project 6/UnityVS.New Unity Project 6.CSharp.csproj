@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\saveManager.cs" />
     <Compile Include="Assets\Scripts\speedChangeEasterEgg.cs" />
     <Compile Include="Assets\Scripts\tempEnd.cs" />
+    <Compile Include="Assets\adjustToScreenSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Editor\UnityLock\ReadMe.txt" />
