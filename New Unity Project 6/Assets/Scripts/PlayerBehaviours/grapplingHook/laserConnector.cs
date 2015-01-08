@@ -14,6 +14,10 @@ public class laserConnector : MonoBehaviour {
     {
         flipped = !flipped;
     }
+    public void updateRotation()
+    {
+        Update();
+    }
     // Update is called once per frame
 	void Update () {
         try

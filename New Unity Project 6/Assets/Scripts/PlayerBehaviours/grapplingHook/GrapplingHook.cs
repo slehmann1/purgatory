@@ -85,11 +85,11 @@ public class GrapplingHook : MonoBehaviour
     void grapple()
     {
 
-        StartCoroutine(resetTrailRenderer());
+        //StartCoroutine(resetTrailRenderer());
 
         grappling = true;
 
-        obj.SetActive(true);
+       
         endScript.Spawn();
         endScript.setRange(Vector3.Distance(target, transform.position));
         end.transform.position = target;
@@ -127,6 +127,11 @@ public class GrapplingHook : MonoBehaviour
         //if this is not done, sometimes the hinge joint does not do anything
         endJoint.enabled = false;
         endJoint.enabled = true;
+        end.rigidbody2D.velocity = Vector2.zero;
+        obj.rigidbody2D.velocity = Vector2.zero;
+        lasCon.updateRotation();
+        obj.SetActive(true);
+       // Debug.Break();
     }
     public void flip()
     {
@@ -174,10 +179,9 @@ public class GrapplingHook : MonoBehaviour
                 Vector3 newVec = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
                 newVec *= -1;
                 newVec.Normalize();
-                removeLine();
-                if (Physics2D.Raycast(transform.position, newVec, range,possibleLayers ))
+                if (Physics2D.Raycast(transform.position, newVec, range, possibleLayers))
                 {
-                    targetCast = Physics2D.Raycast(transform.position, newVec, range,possibleLayers);
+                    targetCast = Physics2D.Raycast(transform.position, newVec, range, possibleLayers);
                     oldTarget = targetCast.point;
                     hasHitObj = true;
                     pMov.setGrappling(true);
@@ -207,11 +211,11 @@ public class GrapplingHook : MonoBehaviour
                 newVec.Normalize();
                 if (Physics2D.Raycast(transform.position, newVec, range, possibleLayers))
                 {
+                    //if it hits an object
                     targetCast = Physics2D.Raycast(transform.position, newVec, range, possibleLayers);
                     oldTarget = targetCast.point;
                     hasHitObj = true;
                     target = oldTarget;
-                    //removeLine();
                     grapple();
                 }
             }
