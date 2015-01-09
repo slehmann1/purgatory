@@ -6,6 +6,10 @@ public class pauseMenu : MonoBehaviour
     public string button;
     private Animator anim;
     private bool active;
+    public void deactivate()
+    {
+        anim.SetBool("Active", false);
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
