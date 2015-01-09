@@ -10,9 +10,9 @@ public class settingsSaver : MonoBehaviour {
     public Toggle vSync, fullscreen, fourByThreeToggle, fiveByFourToggle, sixteenByTenToggle, sixteenByNineToggle, customWindowToggle;
   
     public void save() {
-        Debug.Log(Application.persistentDataPath+"/settings.whyareyoulookingatthis");
+        Debug.Log(Application.persistentDataPath+"/settings.txt");
         BinaryFormatter bf=new BinaryFormatter();
-        FileStream file=File.Create(Application.persistentDataPath+"/settings.whyareyoulookingatthis");
+        FileStream file = File.Create(Application.persistentDataPath + "/settings.settings");
         playerSettings data=new playerSettings();
         data.MusicVolume=musicVolume.value;
         data.MasterVolume=masterVolume.value;
@@ -33,40 +33,17 @@ public class settingsSaver : MonoBehaviour {
                 data.Aa=playerSettings.antiAliasingOptions.eight;
                 break;
         }
-        if(fourByThreeToggle.isOn){
-            data.resolutionOption=playerSettings.resolution.fourThree;
-        }
-        else if(fiveByFourToggle.isOn) {
-            data.resolutionOption=playerSettings.resolution.fiveFour;
-        }else if(sixteenByTenToggle.isOn){
-            data.resolutionOption=playerSettings.resolution.sixteenTen;
-        }else if(sixteenByNineToggle.isOn){
-            data.resolutionOption=playerSettings.resolution.sixteenTen;
-        }
-        else if(customWindowToggle.isOn){
-            data.resolutionOption=playerSettings.resolution.custom;
-        }
-        else {
-            throw new Exception("No resolution toggle selected.");
-        }
         bf.Serialize(file, data);
-
+        file.Close();
+        settingsLoader.loadSettings();
     }
+    
 }
 [Serializable]
 class playerSettings {
     public enum antiAliasingOptions {
         none, two, four, eight
     };
-    public enum resolution {
-        fourThree, fiveFour, sixteenTen, sixteenNine, custom
-    };
-    private resolution res;
-
-    internal resolution resolutionOption {
-        get { return res; }
-        set { res=value; }
-    }
     private antiAliasingOptions aa;
 
     internal antiAliasingOptions Aa {
