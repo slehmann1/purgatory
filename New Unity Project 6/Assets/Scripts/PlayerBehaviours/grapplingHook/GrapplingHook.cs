@@ -135,7 +135,7 @@ public class GrapplingHook : MonoBehaviour
     }
     public void flip()
     {
-        if (!hasHitObj)
+         if (!hasHitObj)
         {
             float newX = -1 * (end.transform.position.x - transform.position.x) + transform.position.x;
             transform.Rotate(new Vector3(0, 180, 0));

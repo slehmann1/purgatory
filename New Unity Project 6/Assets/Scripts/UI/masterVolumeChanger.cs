@@ -18,7 +18,7 @@ public class masterVolumeChanger : MonoBehaviour
         file = File.Create(Application.persistentDataPath + "/settings.settings");
         bf.Serialize(file, data);
         file.Close();
-        AudioListener.volume = f / 100;
+        AudioListener.volume = f / 1000;
 
 
     }

@@ -2,7 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
+[RequireComponent(typeof(AudioSource))]
 public class countdownAnimator : MonoBehaviour {
+    AudioSource source;
+    [Tooltip("The order in which the clips will be played")]
+    public AudioClip [] clips;
     Text t;
     Shadow s;
     [Tooltip("The message displayed after the countdown")]
@@ -13,6 +17,7 @@ public class countdownAnimator : MonoBehaviour {
 
     void Awake()
     {
+        source = GetComponent<AudioSource>();
         t = GetComponent<Text>();
         s = GetComponent<Shadow>();
         originalShadowColor = s.effectColor.a;
@@ -39,6 +44,7 @@ public class countdownAnimator : MonoBehaviour {
          t.enabled = false;
         t.color = new Color(t.color.r, t.color.g, t.color.b, 1);
         s.effectColor = new Color(s.effectColor.r, s.effectColor.g, s.effectColor.b, originalShadowColor);
+        pauseMenu.resetTimeScale();
         }
     IEnumerator fadeText()
     {
@@ -66,9 +72,13 @@ public class countdownAnimator : MonoBehaviour {
         for (int i = 3; i >=1; i--)
         {
             t.text = i.ToString();
+            source.clip = clips[i-1];
+            source.Play();
             yield return StartCoroutine(WaitForRealSeconds(1f));
         }
-        t.text = "go!";
+        source.clip = clips[3];
+        source.Play();
+        t.text = finalMessage;
         pauseMenu.resetTimeScale();
         yield return StartCoroutine(WaitForRealSeconds(0.1f));
         StartCoroutine(fadeText());

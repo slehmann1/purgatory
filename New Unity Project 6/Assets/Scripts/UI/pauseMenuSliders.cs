@@ -9,7 +9,6 @@ public class pauseMenuSliders : MonoBehaviour {
     public textAppender masterTA, musicTA;
 	// Use this for initialization
 	void Awake () {
-        Debug.Log(music.value);
         FileStream f = File.Open(Application.persistentDataPath + "/settings.settings", FileMode.Open);
         playerSettings settings = (playerSettings)new BinaryFormatter().Deserialize(f);
         f.Close();
@@ -17,8 +16,7 @@ public class pauseMenuSliders : MonoBehaviour {
         music.value=settings.MusicVolume;
         masterTA.setValue(settings.MasterVolume);
         musicTA.setValue(settings.MusicVolume);
-        Debug.Log(music.value);
-       }
+    }
 	
 	
 }
