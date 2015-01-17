@@ -7,8 +7,8 @@ public class killPlayerOnCollide : MonoBehaviour {
     {
         if (coll.tag == "Player")
         {
-            coll.gameObject.SendMessageUpwards("death");//send to parent
-            coll.gameObject.BroadcastMessage("death");//send to children
+            coll.gameObject.transform.root.BroadcastMessage("death"); 
+            
         }
         
     }

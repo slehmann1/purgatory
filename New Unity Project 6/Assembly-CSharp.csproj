@@ -88,11 +88,16 @@
      <Compile Include="Assets\Scripts\SpawnEffect.cs" />
      <Compile Include="Assets\Scripts\TiltVelocityLimiter.cs" />
      <Compile Include="Assets\Scripts\UI\antiAliasingText.cs" />
+     <Compile Include="Assets\Scripts\UI\countdownAnimator.cs" />
      <Compile Include="Assets\Scripts\UI\deleteSave.cs" />
      <Compile Include="Assets\Scripts\UI\exit.cs" />
      <Compile Include="Assets\Scripts\UI\fadeMessage.cs" />
      <Compile Include="Assets\Scripts\UI\loadGameSetup.cs" />
+     <Compile Include="Assets\Scripts\UI\masterVolumeChanger.cs" />
+     <Compile Include="Assets\Scripts\UI\musicVolumeChanger.cs" />
      <Compile Include="Assets\Scripts\UI\pauseMenu.cs" />
+     <Compile Include="Assets\Scripts\UI\pauseMenuSliders.cs" />
+     <Compile Include="Assets\Scripts\UI\quitToMain.cs" />
      <Compile Include="Assets\Scripts\UI\settingsSaver.cs" />
      <Compile Include="Assets\Scripts\UI\textAppender.cs" />
      <Compile Include="Assets\Scripts\Update.cs" />

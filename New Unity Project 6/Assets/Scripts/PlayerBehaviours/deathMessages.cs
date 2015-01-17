@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class deathMessages : fadeMessage {
     void death()
     {
+        Debug.Log("RUN");
         activate();
     }
 }

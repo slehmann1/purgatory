@@ -20,13 +20,14 @@ public class fadeMessage : MonoBehaviour
     }
     public void activate()
     {
+       
         canvas.gameObject.SetActive(true);
         canvas.alpha = 0;
         setText();
         Time.timeScale = 0f;
         activated = true;
         StartCoroutine("fadeIn");
-        prevMessage += 1;
+        
     }
     IEnumerator fadeIn()
     {
@@ -55,6 +56,7 @@ public class fadeMessage : MonoBehaviour
             setText();
         }
         StartCoroutine("checkForClick");
+        prevMessage += 1;
     }
     IEnumerator checkForClick()
     {
